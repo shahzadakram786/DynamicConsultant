@@ -48,39 +48,40 @@ body {
     --sidebar-border: 120 15% 88%;
     --sidebar-ring: 120 30% 35%;
   }
+  .green,
   .dark {
-    --background: 0 0% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 0 0% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 0 0% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 0 0% 9%;
-    --secondary: 0 0% 14.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 0 0% 14.9%;
-    --muted-foreground: 0 0% 63.9%;
-    --accent: 0 0% 14.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
+      --background: 132 45% 95%;
+    --foreground: 138 36% 17%;
+    --card: 0 0% 100%;
+    --card-foreground: 138 36% 17%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 138 36% 17%;
+    --primary: 145 45% 34%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 132 40% 88%;
+    --secondary-foreground: 138 36% 17%;
+    --muted: 132 26% 84%;
+    --muted-foreground: 138 20% 35%;
+    --accent: 147 44% 40%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 48%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 14.9%;
-    --input: 0 0% 14.9%;
-    --ring: 0 0% 83.1%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+        --border: 132 28% 78%;
+    --input: 132 24% 90%;
+    --ring: 145 45% 34%;
+    --chart-1: 145 45% 34%;
+    --chart-2: 160 38% 40%;
+    --chart-3: 120 28% 44%;
+    --chart-4: 170 36% 42%;
+    --chart-5: 100 30% 46%;
+    --sidebar-background: 132 45% 95%;
+    --sidebar-foreground: 138 36% 17%;
+    --sidebar-primary: 145 45% 34%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+      --sidebar-accent: 132 40% 88%;
+    --sidebar-accent-foreground: 138 36% 17%;
+    --sidebar-border: 132 28% 78%;
+    --sidebar-ring: 145 45% 34%;
   }
 }
 
@@ -93,6 +94,12 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+  }
+
+  .green body,
+  .dark body {
+    background-image: linear-gradient(145deg, hsl(132 55% 96%), hsl(146 45% 90%));
+    background-attachment: fixed;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;

@@ -180,7 +180,7 @@ export default function ServicesPage() {
             ].map((step, index) => (
               <div key={index} className="relative">
                 <div className="text-center">
-                  <div className="inline-block w-16 h-16 rounded-full bg-primary text-primary-foreground font-serif font-bold text-2xl flex items-center justify-center mb-4">
+                  <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground font-serif font-bold text-2xl flex items-center justify-center mb-4">
                     {step.number}
                   </div>
                   <h3 className="text-xl font-semibold text-foreground mb-2">

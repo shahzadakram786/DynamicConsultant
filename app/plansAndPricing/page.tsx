@@ -71,11 +71,11 @@ export default function PlansAndPricing() {
             {plans.map((plan, index) => (
               <div
                 key={index}
-                className={`relative rounded-2xl border bg-card shadow-sm p-8 flex flex-col justify-between
+                 className={`relative rounded-2xl border bg-card shadow-sm p-8 flex flex-col justify-between transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:border-primary/50
                 ${
                   plan.popular
-                    ? 'border-primary scale-105 shadow-lg'
-                    : 'border-border'
+                    ? 'border-primary scale-105 shadow-lg hover:scale-[1.07]'
+                    : 'border-border hover:scale-[1.02]'
                 }`}
               >
                 {/* Popular Badge */}
