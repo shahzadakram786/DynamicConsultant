@@ -1,0 +1,35 @@
+import type { Metadata, Viewport } from 'next'
+import { Inter, Merriweather } from 'next/font/google'
+
+import './globals.css'
+
+const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
+const merriweather = Merriweather({ 
+  subsets: ['latin'], 
+  weight: ['400', '700'],
+  variable: '--font-serif' 
+})
+
+export const metadata: Metadata = {
+  title: 'Dynamics Total Wellness - Mental Health Counseling',
+  description: 'Professional mental health counseling services focusing on individual therapy, couples counseling, and comprehensive wellness solutions.',
+  generator: 'v0.app',
+  keywords: ['counseling', 'therapy', 'mental health', 'wellness', 'therapist'],
+}
+
+export const viewport: Viewport = {
+  themeColor: '#2d7550',
+  userScalable: true,
+}
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode
+}>) {
+  return (
+    <html lang="en" className={`${inter.variable} ${merriweather.variable}`}>
+      <body className="font-sans antialiased bg-background text-foreground">{children}</body>
+    </html>
+  )
+}
