@@ -2,8 +2,6 @@
 
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import Header from '@/components/header'
-import Footer from '@/components/footer'
 import { ArrowRight, CheckCircle } from 'lucide-react'
 
 export default function PlansAndPricing() {
@@ -49,7 +47,6 @@ export default function PlansAndPricing() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
 
       {/* Hero */}
       <section className="pt-20 pb-16 bg-card border-b border-border">
@@ -164,7 +161,6 @@ export default function PlansAndPricing() {
         </div>
       </section>
 
-      <Footer />
     </div>
   )
 }

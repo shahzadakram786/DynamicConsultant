@@ -2,8 +2,6 @@
 
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import Header from '@/components/header'
-import Footer from '@/components/footer'
 import { ArrowRight, Brain, Users, Heart, Sparkles, CheckCircle } from 'lucide-react'
 
 export default function ServicesPage() {
@@ -60,7 +58,6 @@ export default function ServicesPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
 
       {/* Hero Section */}
       <section className="pt-20 pb-12 md:pt-28 md:pb-16 bg-card border-b border-border">
@@ -230,7 +227,6 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      <Footer />
     </div>
   )
 }

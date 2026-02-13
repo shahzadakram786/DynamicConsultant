@@ -3,6 +3,8 @@ import { Inter, Merriweather } from 'next/font/google'
 import { ThemeProvider } from '@/components/theme-provider'
 
 import './globals.css'
+import Header from '@/components/header'
+import Footer from '@/components/footer'
 
 const inter = Inter({ subsets: ['latin'], variable: '--font-sans' })
 const merriweather = Merriweather({ 
@@ -36,7 +38,9 @@ export default function RootLayout({
     >
       <body className="font-sans antialiased bg-background text-foreground">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+         <Header/>
           {children}
+          <Footer/>
         </ThemeProvider>
       </body>
     </html>
