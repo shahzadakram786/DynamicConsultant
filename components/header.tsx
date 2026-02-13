@@ -55,10 +55,10 @@ export default function Header() {
               Services
             </Link>
             <Link
-              href="/team"
+              href="/about"
               className="text-foreground hover:text-primary transition-colors"
             >
-              Team
+              About
             </Link>
             <Link
               href="/contact"
@@ -132,11 +132,11 @@ export default function Header() {
               Services
             </Link>
             <Link
-              href="/team"
+              href="/about"
               className="block px-4 py-2 text-foreground hover:bg-secondary rounded-lg transition-colors"
               onClick={() => setIsOpen(false)}
             >
-              Team
+              About
             </Link>
             <Link
               href="/contact"

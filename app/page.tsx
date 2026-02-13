@@ -2,14 +2,12 @@
 
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import Header from '@/components/header'
-import Footer from '@/components/footer'
 import { ArrowRight, Users, Heart, Brain, Sparkles } from 'lucide-react'
+import Testimonials from '@/components/section/Testimonials'
 
 export default function Home() {
   return (
     <div className="min-h-screen bg-green-50">
-      <Header />
       
       {/* Hero Section */}
  <section className="py-20 md:py-20">
@@ -127,73 +125,18 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Team Preview Section */}
-      <section className="py-20 md:py-28 bg-background">
-        <div className="container mx-auto px-4">
-          <div className="max-w-3xl mx-auto text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4 text-balance">
-              Meet Our Team
-            </h2>
-            <p className="text-lg text-foreground/70 text-balance">
-              Dedicated professionals committed to supporting your mental health journey.
-            </p>
-          </div>
+      {/* Testimonials Preview Section */}
+      <Testimonials/>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-            {[
-              {
-                name: 'Dr. Sarah Mitchell',
-                role: 'Clinical Director & Psychologist',
-                credential: 'Ph.D. Clinical Psychology',
-              },
-              {
-                name: 'James Chen',
-                role: 'Licensed Marriage & Family Therapist',
-                credential: 'LMFT, Masters Counseling',
-              },
-              {
-                name: 'Maya Patel',
-                role: 'Licensed Clinical Counselor',
-                credential: 'LCC, Specializing in Adolescents',
-              },
-            ].map((member, index) => (
-              <div
-                key={index}
-                className="text-center p-8 rounded-xl border border-border bg-card hover:shadow-lg transition-shadow duration-300"
-              >
-                <div className="w-24 h-24 mx-auto mb-4 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Users className="w-12 h-12 text-primary" />
-                </div>
-                <h3 className="text-xl font-semibold text-foreground mb-2">
-                  {member.name}
-                </h3>
-                <p className="text-primary font-medium mb-2">
-                  {member.role}
-                </p>
-                <p className="text-sm text-foreground/60">
-                  {member.credential}
-                </p>
-              </div>
-            ))}
-          </div>
 
-          <div className="text-center">
-            <Link href="/team">
-              <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-secondary">
-                Meet the Full Team
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </section>
+
 
       {/* Affirmation/Quote Section */}
       <section className="py-20 md:py-28 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             <blockquote className="text-3xl md:text-5xl font-serif font-bold leading-relaxed text-balance">
-              "Your mental health is just as important as your physical health. It deserves the same care and attention."
+              " Teaching you to be your most authentic self with boundaries and values "
             </blockquote>
             <p className="text-primary-foreground/80 text-lg">
               At Dynamics Total Wellness, we believe in the power of compassionate, professional support to transform lives.
@@ -231,7 +174,6 @@ export default function Home() {
         </div>
       </section>
 
-      <Footer />
     </div>
   )
 }

@@ -5,8 +5,6 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
-import Header from '@/components/header'
-import Footer from '@/components/footer'
 import { Mail, Phone, MapPin, Clock, Send } from 'lucide-react'
 
 export default function ContactPage() {
@@ -47,7 +45,6 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-background">
-      <Header />
 
       {/* Hero Section */}
       <section className="pt-20 pb-12 md:pt-28 md:pb-16 bg-card border-b border-border">
@@ -303,7 +300,6 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <Footer />
     </div>
   )
 }
