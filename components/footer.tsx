@@ -22,7 +22,9 @@ export default function Footer() {
               <a href="#" className="hover:text-accent transition-colors">
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="#" className="hover:text-accent transition-colors">
+              <a href="https://www.linkedin.com/in/darlene-nicks-468620113/" 
+                  className="hover:text-accent transition-colors"
+                  target="_blank">
                 <Linkedin className="w-5 h-5" />
               </a>
             </div>
@@ -89,7 +91,8 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <Phone className="w-5 h-5 mt-1 flex-shrink-0" />
                 <a href="tel:+1234567890" className="hover:text-accent transition-colors">
-                  (123) 456-7890
+                  609.507.0123
+
                 </a>
               </li>
               <li className="flex items-start gap-3">
@@ -101,8 +104,7 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 mt-1 flex-shrink-0" />
                 <span className="text-primary-foreground/80">
-                  123 Wellness Street<br />
-                  City, State 12345
+                 Nutley, NJ 07110-4707
                 </span>
               </li>
             </ul>

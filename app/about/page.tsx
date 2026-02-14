@@ -53,24 +53,11 @@ export default function AboutPage() {
       {/* Main Content with Image and Philosophy */}
       <section className="py-16 md:py-24">
         <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
-            {/* Left Column: Paragraphs */}
-            <div className="lg:col-span-2 space-y-8">
-              {aboutContent.paragraphs.map((paragraph, index) => (
-                <div
-                  key={index}
-                  className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 md:p-8 shadow-lg border border-white/20 hover:shadow-xl transition-shadow duration-300"
-                >
-                  <p className="text-base md:text-lg text-foreground/80 leading-relaxed">
-                    {paragraph}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            {/* Right Column: Sticky Image + Signature */}
+          {/* Changed to flex-col on mobile → image first, then paragraphs */}
+          <div className="flex flex-col lg:grid lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
+            {/* Image + Signature FIRST in DOM → shows first on mobile */}
             <div className="lg:col-span-1">
-              <div className="sticky top-24 space-y-8">
+              <div className="sticky top-24 space-y-8 lg:sticky lg:top-24">
                 <div className="group relative">
                   {/* Decorative frame */}
                   <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-3xl blur opacity-75 group-hover:opacity-100 transition duration-300" />
@@ -97,6 +84,20 @@ export default function AboutPage() {
                   </p>
                 </div>
               </div>
+            </div>
+
+            {/* Paragraphs come AFTER image on mobile */}
+            <div className="lg:col-span-2 space-y-8">
+              {aboutContent.paragraphs.map((paragraph, index) => (
+                <div
+                  key={index}
+                  className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 md:p-8 shadow-lg border border-white/20 hover:shadow-xl transition-shadow duration-300"
+                >
+                  <p className="text-base md:text-lg text-foreground/80 leading-relaxed">
+                    {paragraph}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
