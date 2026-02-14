@@ -203,7 +203,7 @@ export default function ContactPage() {
                 </div>
                 <h3 className="text-xl font-semibold text-foreground">Phone</h3>
                 <a href="tel:+1234567890" className="text-primary font-medium hover:text-primary/80 transition-colors">
-                  (123) 456-7890
+                  609.507.0123
                 </a>
                 <p className="text-sm text-foreground/60">
                   Available Monday-Friday, 9 AM - 6 PM
@@ -231,8 +231,7 @@ export default function ContactPage() {
                 </div>
                 <h3 className="text-xl font-semibold text-foreground">Address</h3>
                 <p className="text-foreground/70">
-                  123 Wellness Street<br />
-                  City, State 12345
+                  Nutley, NJ 07110-4707
                 </p>
               </div>
 

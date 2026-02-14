@@ -17,6 +17,8 @@ export default function ServicesPage() {
         'Flexible scheduling options',
         'Progress monitoring and adjustments',
       ],
+      image: 'https://dy7glz37jgl0b.cloudfront.net/advice/images/regain/3c1c369ccf74570aa98a052972eb4741-therapist-takes-notes-while-sitting-with-a-female-client-who-looks-upset_l.jpg',
+      imageAlt: 'Empathetic therapist taking notes while listening to a thoughtful female client in a cozy session',
     },
     {
       icon: Users,
@@ -29,6 +31,8 @@ export default function ServicesPage() {
         'Rebuilding trust and connection',
         'Prevention of relationship issues',
       ],
+      image: 'https://bayareacbtcenter.com/wp-content/uploads/2025/02/Untitled-design-683-1024x791.png',
+      imageAlt: 'Happy diverse couple smiling and connecting during a positive couples therapy session',
     },
     {
       icon: Heart,
@@ -41,6 +45,8 @@ export default function ServicesPage() {
         'Peer and family relationship guidance',
         'Stress and academic support',
       ],
+      image: 'https://www.sandiegotherapy.com/wp-content/uploads/2026/01/a-young-lady-with-a-female-therapist-in-a-teen-therapy-session.jpg',
+      imageAlt: 'Teen girl in supportive conversation with caring female therapist in a comfortable setting',
     },
     {
       icon: Sparkles,
@@ -53,6 +59,8 @@ export default function ServicesPage() {
         'Accessible learning formats',
         'Affordable group pricing',
       ],
+      image: 'https://www.icanotes.com/wp-content/uploads/2022/06/group-therapy-life-skill-activities-for-adults.jpg',
+      imageAlt: 'Diverse group of adults actively participating in a warm group therapy or workshop circle',
     },
   ]
 
@@ -73,70 +81,70 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Services Grid */}
+      {/* Services Grid – alternating layout */}
       <section className="py-20 md:py-28">
         <div className="container mx-auto px-4">
-          <div className="space-y-16">
+          <div className="space-y-20 md:space-y-32">
             {services.map((service, index) => {
-              const IconComponent = service.icon
-              const isEven = index % 2 === 0
+              const isEven = index % 2 === 0; // even index → text left, image right
 
               return (
                 <div
                   key={index}
-                  className={`grid grid-cols-1 md:grid-cols-2 gap-12 items-center ${
-                    !isEven ? 'md:auto-cols-reverse' : ''
-                  }`}
+                  className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-center"
                 >
                   {/* Content */}
-                  <div
-                    className={`space-y-6 ${!isEven ? 'md:order-last' : ''}`}
+                  <div 
+                    className={`space-y-8 ${!isEven ? 'md:order-2' : 'md:order-1'}`}
                   >
-                    <div className="space-y-3">
-                      <div className="inline-flex items-center gap-2 bg-primary/10 px-3 py-1 rounded-full">
-                        <IconComponent className="w-4 h-4 text-primary" />
-                        <span className="text-sm font-medium text-primary">
+                    <div className="space-y-4">
+                      <div className="inline-flex items-center gap-3 bg-primary/10 px-4 py-2 rounded-full">
+                        <service.icon className="w-5 h-5 text-primary" />
+                        <span className="text-base font-medium text-primary">
                           {service.title}
                         </span>
                       </div>
-                      <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground text-balance">
+                      <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground text-balance leading-tight">
                         {service.title}
                       </h2>
                     </div>
 
-                    <p className="text-lg text-foreground/70 leading-relaxed">
+                    <p className="text-lg text-foreground/80 leading-relaxed">
                       {service.fullDesc}
                     </p>
 
-                    <div className="space-y-3">
-                      <h3 className="font-semibold text-foreground">Key Benefits:</h3>
-                      <ul className="space-y-2">
+                    <div className="space-y-4">
+                      <h3 className="font-semibold text-foreground text-xl">Key Benefits:</h3>
+                      <ul className="space-y-3">
                         {service.benefits.map((benefit, idx) => (
                           <li key={idx} className="flex items-start gap-3">
-                            <CheckCircle className="w-5 h-5 text-primary mt-1 flex-shrink-0" />
-                            <span className="text-foreground/80">{benefit}</span>
+                            <CheckCircle className="w-6 h-6 text-primary mt-0.5 flex-shrink-0" />
+                            <span className="text-foreground/80 text-base">{benefit}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
 
                     <Link href="/contact">
-                      <Button className="bg-primary hover:bg-primary/90 text-primary-foreground">
-                        Learn More
+                      <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground mt-6">
+                        Get Started
                         <ArrowRight className="ml-2 h-5 w-5" />
                       </Button>
                     </Link>
                   </div>
 
-                  {/* Icon Visual */}
-                  <div
-                    className={`flex justify-center md:justify-${
-                      isEven ? 'end' : 'start'
-                    }`}
+                  {/* Image */}
+                  <div 
+                    className={`flex justify-center ${!isEven ? 'md:order-1' : 'md:order-2'}`}
                   >
-                    <div className="w-64 h-64 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center">
-                      <IconComponent className="w-32 h-32 text-primary/30" />
-                    </div>
+                    <img
+                      src={service.image}
+                      alt={service.imageAlt}
+                      className="w-full max-w-lg rounded-2xl shadow-xl object-cover border border-border/30"
+                      width={600}
+                      height={400}
+                      loading="lazy"
+                    />
                   </div>
                 </div>
               )
@@ -145,7 +153,7 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Pricing/Process Section */}
+      {/* How It Works Section */}
       <section className="py-20 md:py-28 bg-card border-y border-border">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-16">
@@ -177,7 +185,7 @@ export default function ServicesPage() {
             ].map((step, index) => (
               <div key={index} className="relative">
                 <div className="text-center">
-                  <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground font-serif font-bold text-2xl flex items-center justify-center mb-4">
+                  <div className="w-16 h-16 rounded-full bg-primary text-primary-foreground font-serif font-bold text-2xl flex items-center justify-center mb-4 mx-auto">
                     {step.number}
                   </div>
                   <h3 className="text-xl font-semibold text-foreground mb-2">
