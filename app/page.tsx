@@ -15,7 +15,7 @@ export default function Home() {
     <div className="grid grid-cols-1 md:grid-cols-2 gap-14 ">
       {/* Left Content */}
       <div className="space-y-8 order-2 md:order-1">
-        <h1 className="text-5xl md:text-6xl font-serif font-bold text-foreground leading-tight">
+        <h1 className="text-5xl md:text-6xl font-serif font-bold text-foreground leading-tight lg:leading-[1.2]">
           Your Path to Total Wellness Starts Here
         </h1>
         <p className="text-xl text-foreground/70 leading-relaxed max-w-xl">
@@ -135,7 +135,7 @@ export default function Home() {
       <section className="py-20 md:py-28 bg-primary text-primary-foreground">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto text-center space-y-6">
-            <blockquote className="text-3xl md:text-5xl font-serif font-bold leading-relaxed text-balance">
+            <blockquote className="text-3xl md:text-5xl font-serif font-bold leading-[1.3] md:leading-[1.4] lg:leading-[1.5] text-primary-foreground">
               " Teaching you to be your most authentic self with boundaries and values "
             </blockquote>
             <p className="text-primary-foreground/80 text-lg">
@@ -150,7 +150,7 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <div className="rounded-xl border border-border bg-background p-10 md:p-16 text-center space-y-6">
-              <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground text-balance">
+              <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground text-balance lg:leading-[1.2]">
                 Ready to Begin Your Journey?
               </h2>
               <p className="text-lg text-foreground/70 leading-relaxed max-w-2xl mx-auto text-balance">
