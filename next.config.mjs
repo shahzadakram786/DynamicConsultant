@@ -3,6 +3,12 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
+  /* config options here */
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '10mb', // This allows the 3-5MB photos of IDs
+    },
+  },
   images: {
     remotePatterns: [
       {

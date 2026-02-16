@@ -9,6 +9,7 @@ import { Label } from '@/components/ui/label'
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Upload, Send, AlertTriangle } from 'lucide-react'
+import { sendContactEmail } from '@/app/actions/sendEmail'
 
 export default function ContactForm() {
   const [formData, setFormData] = useState({
@@ -38,27 +39,81 @@ export default function ContactForm() {
     }
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    // TODO: Real submission logic (API, EmailJS, etc.)
-    console.log('Form submitted:', formData)
-    setSubmitted(true)
-    setTimeout(() => setSubmitted(false), 6000)
-    // Reset form after success
-    setFormData({
-      recipient: 'me',
-      firstName: '',
-      lastName: '',
-      email: '',
-      phone: '',
-      nameYouGoBy: '',
-      dateOfBirth: '',
-      state: '',
-      additionalPhone: '',
-      preferences: '',
-      file: null,
+
+  // 1. Add this state at the top with your other states
+const [isSending, setIsSending] = useState(false)
+
+// 2. Updated handleSubmit
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault()
+  setIsSending(true) // Start loading
+
+  try {
+    // We use FormData because it handles File objects automatically
+    const data = new FormData()
+    
+    // Append all text fields and the file
+    Object.entries(formData).forEach(([key, value]) => {
+      if (value instanceof File) {
+        data.append(key, value)
+      } else if (value !== null && value !== undefined) {
+        data.append(key, String(value))
+      }
     })
+
+    // Call the Server Action
+    const result = await sendContactEmail(data)
+
+    if (result.success) {
+      setSubmitted(true)
+      // Reset form after success
+      setFormData({
+        recipient: 'me',
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        nameYouGoBy: '',
+        dateOfBirth: '',
+        state: '',
+        additionalPhone: '',
+        preferences: '',
+        file: null,
+      })
+      setTimeout(() => setSubmitted(false), 6000)
+    } else {
+      // Handle error (you can use a toast library here)
+      alert("Error: " + result.error)
+    }
+  } catch (error) {
+    alert("An unexpected error occurred.")
+  } finally {
+    setIsSending(false) // Stop loading
   }
+}
+  
+
+  // const handleSubmit = (e: React.FormEvent) => {
+    // e.preventDefault()
+    // TODO: Real submission logic (API, EmailJS, etc.)
+    // console.log('Form submitted:', formData)
+    // setSubmitted(true)
+    // setTimeout(() => setSubmitted(false), 6000)
+    // Reset form after success
+    // setFormData({
+    //   recipient: 'me',
+    //   firstName: '',
+    //   lastName: '',
+    //   email: '',
+    //   phone: '',
+    //   nameYouGoBy: '',
+    //   dateOfBirth: '',
+    //   state: '',
+    //   additionalPhone: '',
+    //   preferences: '',
+    //   file: null,
+    // })
+  // }
 
   return (
     <section className="py-16 md:py-20 bg-background">
@@ -317,13 +372,14 @@ export default function ContactForm() {
               </div> */}
 
               <Button
-                type="submit"
-                size="lg"
-                className="bg-primary hover:bg-primary/90 text-primary-foreground px-10"
-              >
-                SEND MESSAGE
-                <Send className="ml-2 h-5 w-5" />
-              </Button>
+  type="submit"
+  size="lg"
+  disabled={isSending} // Disable button while sending
+  className="bg-primary hover:bg-primary/90 text-primary-foreground px-10"
+>
+  {isSending ? "SENDING..." : "SEND MESSAGE"}
+  {!isSending && <Send className="ml-2 h-5 w-5" />}
+</Button>
             </div>
           </form>
         </div>
