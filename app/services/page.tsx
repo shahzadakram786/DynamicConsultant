@@ -2,10 +2,54 @@
 
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { ArrowRight, Brain, Users, Heart, Sparkles, CheckCircle } from 'lucide-react'
+import { ArrowRight, Brain, Users, Heart, Sparkles, CheckCircle, Check, CreditCard, Stethoscope } from 'lucide-react'
 
 export default function ServicesPage() {
-  const services = [
+const services = [
+    // New - Anxiety
+    {
+      icon: Brain,
+      title: 'Anxiety Treatment',
+      shortDesc: 'Regain calm and control in daily life',
+      fullDesc: 'Anxiety can feel overwhelming, but effective treatment helps you understand triggers, reduce physical symptoms, and build lasting coping tools. We use evidence-based methods to help you feel more grounded, confident, and at peace.',
+      benefits: [
+        'Learn proven anxiety management techniques',
+        'Reduce panic attacks and constant worry',
+        'Improve sleep and physical tension',
+        'Build long-term resilience and confidence',
+      ],
+      image: 'https://dy7glz37jgl0b.cloudfront.net/advice/images/regain/3c1c369ccf74570aa98a052972eb4741-therapist-takes-notes-while-sitting-with-a-female-client-who-looks-upset_l.jpg?v=ab3ccb07d4f4',
+      imageAlt: 'Therapist taking notes while listening to upset female client during anxiety therapy session',
+    },
+    {
+      icon: Heart,
+      title: 'PTSD & Trauma Recovery',
+      shortDesc: 'Heal from trauma with safety and compassion',
+      fullDesc: 'Post-Traumatic Stress Disorder and trauma can leave deep imprints, but recovery is possible. We provide trauma-informed care using gentle, evidence-based approaches to help you process experiences, reduce flashbacks and hypervigilance, and reclaim a sense of safety and trust.',
+      benefits: [
+        'Trauma-focused therapy (CPT, EMDR-informed)',
+        'Reduce nightmares, flashbacks, and avoidance',
+        'Rebuild safety, trust, and emotional regulation',
+        'Support for complex trauma and PTSD symptoms',
+      ],
+      image: 'https://cpdonline.co.uk/wp-content/uploads/2025/10/PTSD-treatment-scaled.jpg',
+      imageAlt: 'Therapist listening attentively to client during PTSD trauma recovery session',
+    },
+    {
+      icon: Sparkles,
+      title: 'Addiction Recovery Support',
+      shortDesc: 'Path to freedom from substance and behavioral addictions',
+      fullDesc: 'Addiction affects every part of life, but meaningful recovery is possible with the right support. We offer compassionate, non-judgmental therapy to help you understand underlying patterns, build healthier coping mechanisms, and create a life aligned with your values.',
+      benefits: [
+        'Evidence-based addiction treatment approaches',
+        'Address co-occurring mental health concerns',
+        'Build relapse prevention and coping skills',
+        'Support for sobriety, harm reduction, or moderation goals',
+      ],
+      image: 'https://thumbs.dreamstime.com/b/care-group-counseling-sad-woman-support-addiction-recovery-kindness-comfort-psychology-people-therapy-help-400243985.jpg',
+      imageAlt: 'Group therapy session providing support for addiction recovery',
+    },
+    // Original services (kept as they were)
     {
       icon: Brain,
       title: 'Individual Therapy',
@@ -64,9 +108,73 @@ export default function ServicesPage() {
     },
   ]
 
+  const issues = [
+    'Anxiety',
+    'Depression',
+    'Trauma',
+    'Attachment Issues',
+    'Binge Eating Disorder',
+    'Body Image Disorders',
+    'Racial Identity',
+    'Work Stress',
+    "Women's Issues",
+    'Spirituality and Religion',
+    'Self Esteem',
+    'Relationship Issues',
+    'PTSD',
+    'Perfectionism',
+    'Marital and Premarital',
+    'Life Transitions',
+    'Life Coaching',
+    'Loneliness',
+    'Mood Disorders',
+    'Peer Relationships',
+    'Domestic Violence',
+    'Eating Disorders',
+    'Emotional Abuse',
+    'Couples Counseling',
+    'Addiction',
+  ]
+
+  const approaches = [
+    'Behavioral Therapy',
+    'Cognitive Behavioral Therapy (CBT)',
+    'Family/Marital Therapy',
+    'Acceptance and Commitment (ACT)',
+    'Attachment-Based',
+    'Breathwork',
+    'Christian Counseling',
+    'Clinical Supervision and Licensed Supervisors',
+    'Coaching',
+    'Cognitive Processing Therapy (CPT)',
+    'Compassion Focused',
+    'Culturally Sensitive',
+    'Dialectical (DBT)',
+    'Trauma Focused',
+    'Psychotherapy',
+  ]
+
+  const insurance = [
+    'Aetna',
+    'Blue Cross',
+    'United Healthcare',
+    'Optum',
+    'Out of Pocket',
+    'Out of Network',
+    'Oscar',
+    'Optima Health Plan',
+    'Oxford',
+    'United Healthcare Oxford',
+    'Cigna',
+    'Highmark',
+    'Medicare',
+    'Medicaid',
+  ]
+
+  const fees = 'Psychotherapy Range: $200 - $250'
+
   return (
     <div className="min-h-screen bg-background">
-
       {/* Hero Section */}
       <section className="pt-20 pb-12 md:pt-28 md:pb-16 bg-card border-b border-border">
         <div className="container mx-auto px-4">
@@ -81,19 +189,17 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Services Grid – alternating layout */}
+      {/* Services Grid */}
       <section className="py-20 md:py-28">
         <div className="container mx-auto px-4">
           <div className="space-y-20 md:space-y-32">
             {services.map((service, index) => {
-              const isEven = index % 2 === 0; // even index → text left, image right
-
+              const isEven = index % 2 === 0
               return (
                 <div
                   key={index}
                   className="grid grid-cols-1 md:grid-cols-2 gap-10 lg:gap-16 items-center"
                 >
-                  {/* Content */}
                   <div 
                     className={`space-y-8 ${!isEven ? 'md:order-2' : 'md:order-1'}`}
                   >
@@ -133,7 +239,6 @@ export default function ServicesPage() {
                     </Link>
                   </div>
 
-                  {/* Image */}
                   <div 
                     className={`flex justify-center ${!isEven ? 'md:order-1' : 'md:order-2'}`}
                   >
@@ -153,8 +258,90 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* Issues We Address */}
+      <section className="py-20 md:py-28 bg-card border-t border-border">
+        <div className="container mx-auto px-4">
+          <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-12 text-center text-balance">
+            Are you ready to start the journey together to Total Dynamic Wellness?
+          </h2>
+
+          <div className="max-w-4xl mx-auto">
+            <h3 className="text-3xl font-serif font-semibold text-foreground mb-8 text-center">
+              Issues We Address
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {issues.map((issue, index) => (
+                <div
+                  key={index}
+                  className="bg-background rounded-xl border border-border p-6 flex items-center gap-3 hover:shadow-md transition-shadow"
+                >
+                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                  <span className="text-foreground">{issue}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Our Approaches */}
+      <section className="py-20 md:py-28 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h3 className="text-3xl font-serif font-semibold text-foreground mb-8 text-center">
+              Approaches
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {approaches.map((approach, index) => (
+                <div
+                  key={index}
+                  className="bg-card rounded-xl border border-border p-6 flex items-center gap-3 hover:shadow-md transition-shadow"
+                >
+                  <Stethoscope className="w-5 h-5 text-primary flex-shrink-0" />
+                  <span className="text-foreground">{approach}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Insurance Accepted */}
+      <section className="py-20 md:py-28 bg-card border-t border-border">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h3 className="text-3xl font-serif font-semibold text-foreground mb-8 text-center">
+              Insurance Accepted
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {insurance.map((ins, index) => (
+                <div
+                  key={index}
+                  className="bg-background rounded-xl border border-border p-6 flex items-center gap-3 hover:shadow-md transition-shadow"
+                >
+                  <CreditCard className="w-5 h-5 text-primary flex-shrink-0" />
+                  <span className="text-foreground">{ins}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Fees */}
+      <section className="py-20 md:py-28 bg-background">
+        <div className="container mx-auto px-4">
+          <div className="max-w-md mx-auto bg-card rounded-xl border border-border p-8 text-center shadow-md">
+            <h3 className="text-3xl font-serif font-semibold text-foreground mb-4">
+              Fees
+            </h3>
+            <p className="text-xl text-primary font-medium">{fees}</p>
+          </div>
+        </div>
+      </section>
+
       {/* How It Works Section */}
-      <section className="py-20 md:py-28 bg-card border-y border-border">
+      <section className="py-20 md:py-28 bg-card border-t border-border">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4 text-balance">
