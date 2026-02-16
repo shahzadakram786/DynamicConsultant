@@ -23,15 +23,18 @@ export default function Home() {
           challenges with confidence and clarity.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
-          <Link href="/contact">
+          <Link href="https://darlene-nicks.clientsecure.me/sign-in"
+           target='_blank'>
             <Button size="lg" className="bg-primary hover:bg-primary/90">
-              Schedule a Consultation
+              {/* Schedule a Consultation */}
+              Clients Portal
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </Link>
-          <Link href="/services">
+          <Link href="https://darlene-nicks.clientsecure.me/request/service">
             <Button size="lg" variant="outline">
-              Explore Our Services
+              {/* Explore Our Services */}
+              Request an Appointment
             </Button>
           </Link>
         </div>
@@ -116,7 +119,7 @@ export default function Home() {
 
           <div className="mt-12 text-center">
             <Link href="/services">
-              <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-secondary">
+              <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/100">
                 View All Services
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
