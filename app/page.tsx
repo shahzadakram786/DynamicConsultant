@@ -18,7 +18,7 @@ export default function Home() {
         <h1 className="text-5xl md:text-6xl font-serif font-bold text-foreground leading-tight lg:leading-[1.2]">
           Your Path to Total Wellness Starts Here
         </h1>
-        <p className="text-xl text-foreground/70 leading-relaxed max-w-xl">
+        <p className="text-xl text-foreground/90 leading-relaxed max-w-xl">
           Expert mental health counseling designed to help you navigate life's
           challenges with confidence and clarity.
         </p>
@@ -138,7 +138,7 @@ export default function Home() {
             <blockquote className="text-3xl md:text-5xl font-serif font-bold leading-[1.3] md:leading-[1.4] lg:leading-[1.5] text-primary-foreground">
               " Teaching you to be your most authentic self with boundaries and values "
             </blockquote>
-            <p className="text-primary-foreground/80 text-lg">
+            <p className="text-primary-foreground/95 text-lg">
               At Dynamics Total Wellness, we believe in the power of compassionate, professional support to transform lives.
             </p>
           </div>

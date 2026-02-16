@@ -73,9 +73,10 @@ export default function TestimonialSlider({
         </div>
 
         {/* Small ethical note */}
-        <p className="text-center text-sm text-foreground/50 mt-12 max-w-2xl mx-auto">
-          Testimonials are shared voluntarily and with permission. Individual results may vary.
-        </p>
+        {/* // Testimonials disclaimer (in TestimonialSlider.tsx or similar) */}
+<p className="text-center text-sm text-foreground/80 mt-12 max-w-2xl mx-auto">
+  Testimonials are shared voluntarily and with permission. Individual results may vary.
+</p>
       </div>
 
       {/* Your fade animation styles */}
