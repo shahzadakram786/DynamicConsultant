@@ -35,7 +35,7 @@ export default function Home() {
             </Button>
           </Link>
         </div>
-        <div className="space-y-2 text-md text-foreground/60">
+        <div className="space-y-2 text-md text-foreground/90">
           <p>✔ Licensed and experienced therapists</p>
           <p>✔ Personalized treatment plans</p>
           <p>✔ Confidential and supportive environment</p>

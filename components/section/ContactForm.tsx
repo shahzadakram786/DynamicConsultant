@@ -116,7 +116,7 @@ const handleSubmit = async (e: React.FormEvent) => {
   // }
 
   return (
-    <section className="py-16 md:py-20 bg-background">
+    <section className="py-16 md:py-0 bg-background">
       <div className="container mx-auto px-4 max-w-4xl">
         <div className="bg-card rounded-2xl border border-border shadow-lg overflow-hidden">
           {/* Header */}
@@ -350,8 +350,8 @@ const handleSubmit = async (e: React.FormEvent) => {
             </div>
 
             {/* Disclaimers */}
-            <div className="space-y-4 text-sm text-foreground/70 bg-muted/50 p-6 rounded-xl">
-              <p>
+            <div className="space-y-4 text-sm text-foreground/60 rounded-xl">
+              <p className="text-base text-foreground/80">
                 For medical emergencies, contact your healthcare provider or call 911. For mental health crises, call or text 988.
               </p>
               <p>
