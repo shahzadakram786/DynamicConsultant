@@ -16,15 +16,18 @@ export default function Footer() {
               Professional mental health counseling services dedicated to supporting your wellness journey.
             </p>
             <div className="flex gap-4">
-              <a href="#" className="hover:text-accent transition-colors">
+              <a href="#" className="hover:text-accent transition-colors"
+              aria-label="Visit Darlene Nicks on Facebook">
                 <Facebook className="w-5 h-5" />
               </a>
-              <a href="#" className="hover:text-accent transition-colors">
+              <a href="#" className="hover:text-accent transition-colors"
+              aria-label="Visit Darlene Nicks on Twitter">
                 <Twitter className="w-5 h-5" />
               </a>
               <a href="https://www.linkedin.com/in/darlene-nicks-468620113/" 
                   className="hover:text-accent transition-colors"
-                  target="_blank">
+                  target="_blank"
+                  aria-label="Visit Darlene Nicks on LinkedIn">
                 <Linkedin className="w-5 h-5" />
               </a>
             </div>

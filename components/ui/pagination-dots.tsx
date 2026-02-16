@@ -22,7 +22,7 @@ export function PaginationDots({
           key={index}
           onClick={() => onChange(index)}
           className={cn(
-            'h-2 rounded-full transition-all duration-300',
+            'h-3 w-2 rounded-full transition-all duration-300',
             index === current
               ? 'bg-primary w-8'
               : 'bg-primary/30 w-2 hover:bg-primary/50'

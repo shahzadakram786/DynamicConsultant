@@ -22,22 +22,22 @@ export default function ContactPage() {
       </section>
 
       {/* Main Content */}
-      <section className="py-20 md:py-28">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {/* Form takes 2 columns on lg+ */}
-            <div className="lg:col-span-2">
-              <ContactForm />
-            </div>
+      {/* Main Content */}
+<section className="py-20 md:py-28">
+  <div className="container mx-auto px-4">
+    <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+      {/* Form – takes 2 columns on lg+ */}
+      <div className="lg:col-span-2 order-2 lg:order-1">
+        <ContactForm />
+      </div>
 
-            {/* Sidebar info */}
-            <div className="lg:col-span-1">
-              <ContactInfo />
-            </div>
-          </div>
-        </div>
-      </section>
-
+      {/* Sidebar – sticky on lg+ */}
+      <div className="lg:col-span-1 order-1 lg:order-2 lg:sticky lg:top-24 lg:self-start">
+        <ContactInfo />
+      </div>
+    </div>
+  </div>
+</section>
       {/* Location  */}
       <section className="py-20 md:py-28 bg-card border-t border-border">
         <div className="container mx-auto px-4">

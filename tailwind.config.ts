@@ -19,7 +19,10 @@ const config: Config = {
   			]
   		},
   		colors: {
-  			background: 'hsl(var(--background))',
+  			
+			DEFAULT: 'hsl(var(--foreground))',
+        	90: 'hsl(var(--foreground) / 0.9)',
+			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
   			card: {
   				DEFAULT: 'hsl(var(--card))',
