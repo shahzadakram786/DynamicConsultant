@@ -33,7 +33,7 @@ export default function Header() {
               <img
                 src="/removedBG.png"
                 alt="Dynamics Total Wellness"
-                className="w-full h-full object-contain"
+                className="w-full h-full object-cover"
               />
             </div>
           </Link>
