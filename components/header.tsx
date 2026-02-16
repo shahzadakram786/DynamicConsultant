@@ -23,7 +23,7 @@ export default function Header() {
   return (
     <header className="bg-card border-b border-border sticky top-0 z-50">
       <div className="container mx-auto px-4">
-        <nav className="flex items-center justify-between h-16 md:h-20">
+        <nav className="flex items-center justify-between h-18 md:h-20">
           {/* Logo */}
           <Link
             href="/"
@@ -31,7 +31,7 @@ export default function Header() {
           >
             <div className="w-40 h-20 flex-shrink-0">
               <img
-                src="/removedBG.png"
+                src="/removedBG (1).png"
                 alt="Dynamics Total Wellness"
                 className="w-full h-full object-cover"
               />

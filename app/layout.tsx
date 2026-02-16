@@ -37,7 +37,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${inter.variable} ${merriweather.variable}`}
     >
-      <body className="font-sans antialiased bg-background text-foreground">
+      <body className="font-sans antialiased bg-background text-foreground" suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           <Header />
           <main>{children}</main>

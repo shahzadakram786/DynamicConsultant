@@ -18,20 +18,23 @@ export default function Home() {
         <h1 className="text-5xl md:text-6xl font-serif font-bold text-foreground leading-tight lg:leading-[1.2]">
           Your Path to Total Wellness Starts Here
         </h1>
-        <p className="text-xl text-foreground/70 leading-relaxed max-w-xl">
+        <p className="text-xl text-foreground/90 leading-relaxed max-w-xl">
           Expert mental health counseling designed to help you navigate life's
           challenges with confidence and clarity.
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
-          <Link href="/contact">
+          <Link href="https://darlene-nicks.clientsecure.me/sign-in"
+           target='_blank'>
             <Button size="lg" className="bg-primary hover:bg-primary/90">
-              Schedule a Consultation
+              {/* Schedule a Consultation */}
+              Clients Portal
               <ArrowRight className="ml-2 h-5 w-5" />
             </Button>
           </Link>
-          <Link href="/services">
+          <Link href="https://darlene-nicks.clientsecure.me/request/service">
             <Button size="lg" variant="outline">
-              Explore Our Services
+              {/* Explore Our Services */}
+              Request an Appointment
             </Button>
           </Link>
         </div>
@@ -116,7 +119,7 @@ export default function Home() {
 
           <div className="mt-12 text-center">
             <Link href="/services">
-              <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-secondary">
+              <Button variant="outline" size="lg" className="border-primary text-primary hover:bg-primary/100">
                 View All Services
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
@@ -138,7 +141,7 @@ export default function Home() {
             <blockquote className="text-3xl md:text-5xl font-serif font-bold leading-[1.3] md:leading-[1.4] lg:leading-[1.5] text-primary-foreground">
               " Teaching you to be your most authentic self with boundaries and values "
             </blockquote>
-            <p className="text-primary-foreground/80 text-lg">
+            <p className="text-primary-foreground/95 text-lg">
               At Dynamics Total Wellness, we believe in the power of compassionate, professional support to transform lives.
             </p>
           </div>
