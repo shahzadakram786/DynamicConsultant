@@ -16,7 +16,7 @@ export default function Hero() {
         {/* Background image (only for this content area) */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/hero1.jpg"
+            src="/hero1(1).jpg"
             alt="Therapy Session"
             className="w-full h-full object-cover  scale-110 blur-[6px] opacity-20"
           />

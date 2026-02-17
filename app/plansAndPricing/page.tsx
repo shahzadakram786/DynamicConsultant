@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowRight, CheckCircle } from 'lucide-react'
+import Cta from '@/components/section/Cta'
 
 export default function PlansAndPricing() {
   const plans = [
@@ -134,32 +135,8 @@ export default function PlansAndPricing() {
       </section>
 
       {/* CTA */}
-      <section className="py-20 bg-card border-t border-border">
-        <div className="container mx-auto px-4 text-center space-y-6">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground">
-            Ready to Begin?
-          </h2>
-          <p className="text-lg text-foreground/70 max-w-2xl mx-auto">
-            Our compassionate therapists are here to guide you every step of the way.
-            Book your consultation today.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-            <Link href="/contact">
-              <Button size="lg" className="bg-primary hover:bg-primary/90">
-                Schedule Now
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-
-            <a href="tel:+1234567890">
-              <Button size="lg" variant="outline" className="border-primary">
-                Call Us
-              </Button>
-            </a>
-          </div>
-        </div>
-      </section>
+            
+            <Cta />
 
     </div>
   )
