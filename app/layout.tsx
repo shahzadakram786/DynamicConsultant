@@ -2,9 +2,11 @@ import type { Metadata, Viewport } from "next";
 import { Inter, Merriweather } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 
+
 import "./globals.css";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
+import ScrollProgress from "@/components/section/ScrollProgress";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const merriweather = Merriweather({
@@ -39,6 +41,7 @@ export default function RootLayout({
     >
       <body className="font-sans antialiased bg-background text-foreground" suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          <ScrollProgress /> {/* This now lives globally */}
           <Header />
           <main>{children}</main>
           <Footer />

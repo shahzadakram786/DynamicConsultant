@@ -1,162 +1,120 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { useEffect, useState } from "react";
-import { Leaf, Menu, Moon, Sun, X } from "lucide-react";
-import { useTheme } from "next-themes";
+import Link from 'next/link';
+import { useState } from 'react';
+import { Menu, X } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
-  };
-
-  const closeMenu = () => setIsOpen(false);
+  const navLinks = [
+    { name: 'Home', href: '/' },
+    { name: 'Services', href: '/services' },
+    { name: 'About', href: '/about' },
+    { name: 'Contact', href: '/contact' },
+    { name: 'Pricing', href: '/plansAndPricing' },
+  ];
 
   return (
-    <header className="bg-card border-b border-border sticky top-0 z-50">
-      <div className="container mx-auto px-4">
-        <nav className="flex items-center justify-between h-18 md:h-20">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
-          >
-            <div className="w-40 h-20 flex-shrink-0">
-              <img
-                src="/removedBG (1).png"
-                alt="Dynamics Total Wellness"
-                className="w-full h-full object-cover"
-              />
+    <>
+      {/* 1. Header with White Background */}
+      <header className="relative w-full z-50 bg-white border-b border-gray-100 shadow-sm">
+        <div className="container mx-auto px-1 md:px-4 max-w-7xl">
+          <nav className="flex items-center justify-between py-1">
+            
+            {/* LOGO */}
+            <Link href="/" className="flex items-center">
+              <div className="relative h-20 md:h-28 w-auto">
+                <img
+                  src="/removedBG.png"
+                  alt="Dynamics Total Wellness"
+                  /* Added a slight dark contrast filter if your logo is very light, 
+                     otherwise object-contain is perfect for white backgrounds */
+                  className="h-full w-auto object-contain"
+                />
+              </div>
+            </Link>
+
+            {/* DESKTOP NAV - Changed text color to Dark Green for readability on white */}
+            <div className="hidden lg:flex items-center gap-10">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.name}
+                  href={link.href}
+                  className="text-[15px] font-extrabold text-[#1A2A22] tracking-tight hover:text-[#026228] transition-colors relative group"
+                >
+                  {link.name}
+                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#026228] transition-all group-hover:w-full" />
+                </Link>
+              ))}
             </div>
-          </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-8 text-lg font-bold">
-            <Link href="/" className="text-foreground hover:text-primary transition-colors">
-              Home
-            </Link>
-            <Link href="/services" className="text-foreground hover:text-primary transition-colors">
-              Services
-            </Link>
-            <Link href="/about" className="text-foreground hover:text-primary transition-colors">
-              About
-            </Link>
-            <Link href="/contact" className="text-foreground hover:text-primary transition-colors">
-              Contact
-            </Link>
-            <Link href="/plansAndPricing" className="text-foreground hover:text-primary transition-colors">
-              Plans & Pricing
-            </Link>
-          </div>
-
-          {/* Right side: Theme toggle + Mobile hamburger */}
-          <div className="flex items-center gap-2">
-            {/* Theme Toggle */}
-            <button
-              className="p-2 rounded-lg border border-border hover:bg-secondary transition-colors"
-              onClick={toggleTheme}
-              aria-label="Toggle theme"
-            >
-              {mounted ? (
-                theme === "dark" ? (
-                  <Sun className="w-5 h-5 text-foreground" />
-                ) : (
-                  <Moon className="w-5 h-5 text-foreground" />
-                )
-              ) : (
-                <Sun className="w-5 h-5 text-foreground" />
-              )}
-            </button>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden p-2 hover:bg-secondary rounded-lg transition-colors"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle menu"
-            >
-              {isOpen ? (
-                <X className="w-6 h-6 text-foreground" />
-              ) : (
-                <Menu className="w-6 h-6 text-foreground" />
-              )}
-            </button>
-          </div>
-        </nav>
-      </div>
-
-      {/* Full-screen Mobile Menu - slides from right */}
-      <div
-        className={`fixed inset-0 z-50 bg-black/60 backdrop-blur-sm transition-opacity duration-300 md:hidden ${
-          isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
-        onClick={closeMenu} // close when clicking outside menu
-      >
-        <div
-          className={`fixed top-0 right-0 h-full w-4/5 max-w-sm bg-card shadow-2xl transform transition-transform duration-300 ease-in-out ${
-            isOpen ? "translate-x-0" : "translate-x-full"
-          }`}
-          onClick={(e) => e.stopPropagation()} // prevent close when clicking inside menu
-        >
-          {/* Header inside menu */}
-          <div className="flex items-center justify-between p-6 border-b border-border">
-            <span className="text-xl font-bold text-foreground">Menu</span>
-            <button
-              onClick={closeMenu}
-              aria-label="Close menu"
-              className="p-2 rounded-lg hover:bg-secondary transition-colors"
-            >
-              <X className="w-6 h-6 text-foreground" />
-            </button>
-          </div>
-
-          {/* Menu Links */}
-          <div className="flex flex-col py-8 px-6 space-y-4 text-lg font-medium">
-            <Link
-              href="/"
-              className="py-3 px-4 hover:bg-secondary rounded-lg transition-colors"
-              onClick={closeMenu}
-            >
-              Home
-            </Link>
-            <Link
-              href="/services"
-              className="py-3 px-4 hover:bg-secondary rounded-lg transition-colors"
-              onClick={closeMenu}
-            >
-              Services
-            </Link>
-            <Link
-              href="/about"
-              className="py-3 px-4 hover:bg-secondary rounded-lg transition-colors"
-              onClick={closeMenu}
-            >
-              About
-            </Link>
-            <Link
-              href="/contact"
-              className="py-3 px-4 hover:bg-secondary rounded-lg transition-colors"
-              onClick={closeMenu}
-            >
-              Contact
-            </Link>
-            <Link
-              href="/plansAndPricing"
-              className="py-3 px-4 hover:bg-secondary rounded-lg transition-colors"
-              onClick={closeMenu}
-            >
-              Plans & Pricing
-            </Link>
-          </div>
+            {/* ACTION BUTTON */}
+            <div className="flex items-center gap-4">
+              <Link href="https://darlene-nicks.clientsecure.me/sign-in" target="_blank" className="hidden sm:block">
+                <Button className="rounded-full bg-[#026228] hover:bg-[#1A2A22] text-white font-bold px-8 h-12 transition-all shadow-md">
+                  Patient Portal
+                </Button>
+              </Link>
+              
+              {/* Mobile Menu Toggle - Changed to Dark Green */}
+              <button 
+                className="lg:hidden p-2 text-[#1A2A22] hover:bg-gray-100 rounded-lg transition-colors" 
+                onClick={() => setIsOpen(true)}
+              >
+                <Menu size={32} />
+              </button>
+            </div>
+          </nav>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {/* MOBILE MENU - White Background Theme */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            exit={{ x: '100%' }}
+            transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+            className="fixed inset-0 z-[100] bg-white p-10 lg:hidden flex flex-col"
+          >
+            <div className="flex justify-between items-center mb-12">
+              <img src="/removedBG.png" alt="Logo" className="h-16 w-auto object-contain" />
+              <button 
+                onClick={() => setIsOpen(false)}
+                className="p-2 text-[#1A2A22] hover:bg-gray-100 rounded-full"
+              >
+                <X size={32} />
+              </button>
+            </div>
+            
+            <nav className="flex flex-col gap-8">
+              {navLinks.map((link) => (
+                <Link 
+                  key={link.name} 
+                  href={link.href} 
+                  onClick={() => setIsOpen(false)} 
+                  className="text-3xl font-bold text-[#1A2A22] hover:text-[#026228] transition-colors flex items-center justify-between group"
+                >
+                  {link.name}
+                  <span className="w-2 h-2 rounded-full bg-[#026228] opacity-0 group-hover:opacity-100 transition-opacity" />
+                </Link>
+              ))}
+            </nav>
+
+            <div className="mt-auto pb-10">
+              <Link href="https://darlene-nicks.clientsecure.me/sign-in" target="_blank">
+                <Button className="w-full rounded-2xl bg-[#026228] h-16 text-lg font-bold shadow-xl">
+                  Patient Portal
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
