@@ -45,12 +45,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* FAQ */}
-      <section className="py-20 md:py-28 bg-card border-y border-border">
-        <div className="container mx-auto px-4">
-          <FAQSection />
-        </div>
-      </section>
+ 
     </div>
   )
 }

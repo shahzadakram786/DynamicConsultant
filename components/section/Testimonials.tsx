@@ -1,143 +1,155 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Quote } from 'lucide-react';
-import { PaginationDots } from '@/components/ui/pagination-dots';
+import { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Quote, ChevronLeft, ChevronRight, Star } from 'lucide-react';
 import { testimonials } from '@/lib/data/testimonials';
 
-interface TestimonialSliderProps {
-  autoPlay?: boolean;
-  interval?: number;
-}
+export default function TestimonialSlider() {
+  const [index, setIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
 
-export default function TestimonialSlider({
-  autoPlay = true,          // changed default to true
-  interval = 6000,          // slightly longer for reading longer quotes
-}: TestimonialSliderProps) {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const nextStep = useCallback(() => {
+    setDirection(1);
+    setIndex((prev) => (prev + 1) % testimonials.length);
+  }, []);
 
-  // Autoplay with cleanup
+  const prevStep = useCallback(() => {
+    setDirection(-1);
+    setIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  }, []);
+
   useEffect(() => {
-    if (!autoPlay) return;
-    const timer = setInterval(() => {
-      setCurrentIndex((prev) => (prev + 1) % testimonials.length);
-    }, interval);
+    const timer = setInterval(nextStep, 8000);
     return () => clearInterval(timer);
-  }, [autoPlay, interval]);
+  }, [nextStep]);
 
-  const current = testimonials[currentIndex];
+  const variants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? '20%' : '-20%',
+      opacity: 0,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+    },
+    exit: (direction: number) => ({
+      x: direction < 0 ? '20%' : '-20%',
+      opacity: 0,
+    })
+  };
 
   return (
-    <section className="py-20 md:py-28 bg-background">
-      <div className="container mx-auto px-4">
-        <div className="max-w-3xl mx-auto text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4">
-            What Clients Are Saying
+    /* CHANGED: Background to a warm, sophisticated linen color */
+    <section className="py-24 md:py-32 bg-[#F8F5F0] overflow-hidden relative">
+      
+      {/* Subtle background decorative circle */}
+      <div className="absolute -top-24 -left-24 w-96 h-96 bg-primary/5 rounded-full blur-3xl opacity-50" />
+
+      <div className="container mx-auto px-6 relative z-10">
+        
+        {/* Header */}
+        <div className="text-center md:text-left max-w-2xl mb-12 md:mb-20">
+          <motion.span 
+            initial={{ opacity: 0 }} 
+            whileInView={{ opacity: 1 }}
+            className="text-primary font-bold tracking-[0.2em] uppercase text-[10px] md:text-xs mb-3 block"
+          >
+            Real Stories
+          </motion.span>
+          <h2 className="text-4xl md:text-6xl font-serif font-bold text-[#1A2A22] leading-tight">
+            The Impact of <br className="hidden md:block" /> 
+            <span className="italic font-normal text-primary/80">Support</span>
           </h2>
-          <p className="text-lg text-foreground/70">
-            Honest feedback from people who've experienced the work.
-          </p>
         </div>
 
-        <div className="max-w-3xl mx-auto">
-          <div className="relative min-h-[300px]">  {/* increased height a bit */}
-            <div
-              key={currentIndex}
-              className="animate-fade-in bg-card rounded-2xl p-8 border border-border shadow-md"
-            >
-              <Quote className="w-10 h-10 text-primary/30 mb-6" />  {/* bigger icon */}
-              <blockquote className="text-xl md:text-2xl text-foreground/80 leading-relaxed mb-8 italic">
-                “{current.quote}”
-              </blockquote>
+        {/* Slider Wrapper */}
+        <div className="relative max-w-full mx-auto px-4 md:px-16">
+          
+          {/* Navigation Buttons */}
+          <button 
+            onClick={prevStep}
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 p-4 md:p-5 rounded-full bg-white shadow-xl border border-border text-[#1A2A22] hover:bg-primary hover:text-white transition-all duration-300 -translate-x-2 md:-translate-x-6 group"
+          >
+            <ChevronLeft className="w-6 h-6 group-hover:-translate-x-0.5 transition-transform" />
+          </button>
 
-              <div className="border-t border-border pt-6">
-                <p className="font-semibold text-foreground text-lg">{current.author}</p>
-                {(current.role || current.date) && (
-                  <p className="text-foreground/60 text-sm mt-1">
-                    {current.role && <span>{current.role}</span>}
-                    {current.role && current.date && <span> • </span>}
-                    {current.date && <span>{current.date}</span>}
-                  </p>
-                )}
-              </div>
-            </div>
+          <button 
+            onClick={nextStep}
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 p-4 md:p-5 rounded-full bg-white shadow-xl border border-border text-[#1A2A22] hover:bg-primary hover:text-white transition-all duration-300 translate-x-2 md:translate-x-6 group"
+          >
+            <ChevronRight className="w-6 h-6 group-hover:translate-x-0.5 transition-transform" />
+          </button>
+          
+          {/* Main Content Area */}
+          <div className="relative min-h-[500px] md:min-h-[420px] flex items-center">
+            <AnimatePresence initial={false} custom={direction} mode="wait">
+              <motion.div
+                key={index}
+                custom={direction}
+                variants={variants}
+                initial="enter"
+                animate="center"
+                exit="exit"
+                transition={{
+                  x: { type: "spring", stiffness: 300, damping: 30 },
+                  opacity: { duration: 0.4 }
+                }}
+                className="w-full"
+              >
+                {/* CHANGED: Card uses a subtle border and higher shadow for a floating effect */}
+                <div className="bg-white border border-[#3E5C4A]/5 p-8 md:p-16 rounded-[3rem] md:rounded-[4rem] shadow-[0_20px_50px_rgba(0,0,0,0.04)] relative">
+                  <Quote className="hidden sm:block absolute top-12 right-12 w-20 h-20 text-primary/5 -rotate-12" />
+
+                  <div className="relative z-10">
+                    <div className="flex gap-1 mb-8 justify-center md:justify-start">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 md:w-5 md:h-5 fill-primary text-primary" />
+                      ))}
+                    </div>
+
+                    <blockquote className="text-xl md:text-3xl font-serif italic text-[#1A2A22] leading-relaxed mb-10 md:mb-14 text-center md:text-left">
+                      "{testimonials[index].quote}"
+                    </blockquote>
+
+                    <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6 border-t border-[#F8F5F0] pt-10">
+                      {/* CHANGED: Avatar matches the Hero's Emerald theme */}
+                      <div className="w-14 h-14 md:w-16 md:h-16 rounded-2xl bg-[#062c1f] text-white flex items-center justify-center font-bold text-xl md:text-2xl shadow-lg">
+                        {testimonials[index].author.charAt(0)}
+                      </div>
+                      <div className="text-center md:text-left">
+                        <p className="font-bold text-[#1A2A22] text-lg md:text-xl">
+                          {testimonials[index].author}
+                        </p>
+                        <p className="text-[10px] md:text-xs uppercase tracking-[0.2em] text-primary/60 mt-1 font-bold">
+                          {testimonials[index].role || 'Verified Journey'}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            </AnimatePresence>
           </div>
 
-          <div className="flex justify-center mt-10">
-            <PaginationDots
-              total={testimonials.length}
-              current={currentIndex}
-              onChange={setCurrentIndex}
-            />
+          {/* Pagination Indicators */}
+          <div className="flex justify-center gap-3 mt-12">
+            {testimonials.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => {
+                  setDirection(i > index ? 1 : -1);
+                  setIndex(i);
+                }}
+                className={`h-1.5 transition-all duration-500 rounded-full ${
+                  i === index ? 'w-12 bg-primary' : 'w-3 bg-primary/10'
+                }`}
+              />
+            ))}
           </div>
+
         </div>
-
-        {/* Small ethical note */}
-        {/* // Testimonials disclaimer (in TestimonialSlider.tsx or similar) */}
-<p className="text-center text-sm text-foreground/80 mt-12 max-w-2xl mx-auto">
-  Testimonials are shared voluntarily and with permission. Individual results may vary.
-</p>
       </div>
-
-      {/* Your fade animation styles */}
-      <style jsx>{`... same as before`}</style>
     </section>
   );
 }
-
-// 'use client'
-
-// import { Quote } from 'lucide-react'
-// import { testimonials, type Testimonial } from '@/lib/data/testimonials'
-
-// export default function Testimonials() {
-//   return (
-//     <section className="py-20 md:py-28 bg-background">
-//       <div className="container mx-auto px-4">
-//         {/* Section Header */}
-//         <div className="max-w-3xl mx-auto text-center mb-16">
-//           <h2 className="text-4xl md:text-5xl font-serif font-bold text-foreground mb-4 text-balance">
-//             What Our Clients Say
-//           </h2>
-//           <p className="text-lg text-foreground/70 text-balance">
-//             Real stories from real people on their journey to wellness.
-//           </p>
-//         </div>
-
-//         {/* Testimonials Grid */}
-//         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-//           {testimonials.map((testimonial: Testimonial) => (
-//             <div
-//               key={testimonial.id}
-//               className="group relative bg-card rounded-2xl p-6 border border-border hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-//             >
-//               {/* Quote Icon */}
-//               <Quote className="absolute top-4 right-4 w-8 h-8 text-primary/10 group-hover:text-primary/20 transition-colors" />
-
-//               {/* Testimonial Text */}
-//               <blockquote className="text-foreground/80 leading-relaxed mb-6 relative z-10">
-//                 "{testimonial.quote}"
-//               </blockquote>
-
-//               {/* Author Info */}
-//               <div className="border-t border-border pt-4 mt-4">
-//                 <p className="font-semibold text-foreground">
-//                   {testimonial.author}
-//                 </p>
-//                 {(testimonial.role || testimonial.date) && (
-//                   <p className="text-sm text-foreground/60">
-//                     {testimonial.role && <span>{testimonial.role}</span>}
-//                     {testimonial.role && testimonial.date && <span> • </span>}
-//                     {testimonial.date && <span>{testimonial.date}</span>}
-//                   </p>
-//                 )}
-//               </div>
-//             </div>
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   )
-// }
-
-

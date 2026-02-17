@@ -2,6 +2,7 @@
 import { aboutContent } from '@/lib/data/about-content'
 import Image from 'next/image'
 import { Leaf, Flower2, Sparkles, Heart } from 'lucide-react'
+import FAQSection from '@/components/section/FAQSection'
 
 export default function AboutPage() {
   // Extract key principles from the paragraphs
@@ -148,6 +149,16 @@ export default function AboutPage() {
           — Nurturing growth, one step at a time —
         </p>
       </div>
+
+
+
+
+           {/* FAQ */}
+      <section className="py-20 md:py-28 bg-card border-y border-border">
+        <div className="container mx-auto px-4">
+          <FAQSection />
+        </div>
+      </section>
     </div>
   )
 }
