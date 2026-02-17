@@ -28,11 +28,11 @@ export default function Header() {
             <Link href="/" className="flex items-center">
               <div className="relative h-20 md:h-28 w-auto">
                 <img
-                  src="/removedBG.png"
+                  src="/removedBG (1).png"
                   alt="Dynamics Total Wellness"
                   /* Added a slight dark contrast filter if your logo is very light, 
                      otherwise object-contain is perfect for white backgrounds */
-                  className="h-full w-auto object-contain"
+                  className="h-full w-auto object-contain lg:object-cover"
                 />
               </div>
             </Link>
@@ -43,7 +43,7 @@ export default function Header() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-[15px] font-extrabold text-[#1A2A22] tracking-tight hover:text-[#026228] transition-colors relative group"
+                  className="text-[15px] font-extrabold text-[#1A2A22]  tracking-loose hover:text-[#026228] transition-colors relative group"
                 >
                   {link.name}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#026228] transition-all group-hover:w-full" />
