@@ -10,6 +10,7 @@ import ServiceCard from '@/components/section/ServiceCard'
 import Hero from '@/components/section/HeroSection'
 import InsuranceMarquee from '@/components/section/InsuranceMarquee'
 import Cta from '@/components/section/Cta'
+import HomeAbout from '@/components/section/HomeAbout'
 
 // Animation Variants
 const fadeInUp = {
@@ -36,6 +37,9 @@ export default function Home() {
       
       {/* Hero Section */}
       <Hero />
+
+
+      <HomeAbout/>
 
       {/* // ... inside the Home component */}
 <section className="py-24 bg-[#FDFCF9]">

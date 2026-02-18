@@ -1,164 +1,141 @@
-// src/app/about/page.js
-import { aboutContent } from '@/lib/data/about-content'
+'use client'
+
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { useRef } from 'react'
+import { ArrowUpRight, Flower, ShieldCheck, Waves } from 'lucide-react'
 import Image from 'next/image'
-import { Leaf, Flower2, Sparkles, Heart } from 'lucide-react'
-import FAQSection from '@/components/section/FAQSection'
+import { aboutContent } from '@/lib/data/about-content'
 
 export default function AboutPage() {
-  // Extract key principles from the paragraphs
-  const principles = [
-    {
-      icon: Leaf,
-      title: 'Dynamic Wellness',
-      desc: 'A continuous, active process of pursuing optimal health—mental, physical, and social.',
-    },
-    {
-      icon: Flower2,
-      title: 'Holistic Approach',
-      desc: 'Adapting theories to each individual’s unique personality and needs.',
-    },
-    {
-      icon: Heart,
-      title: 'Healing Trauma',
-      desc: 'Recognizing and restructuring distorted perceptions shaped by life experiences.',
-    },
-    {
-      icon: Sparkles,
-      title: 'Total Integration',
-      desc: 'Blending psychological, social, and spiritual dimensions for authentic growth.',
-    },
-  ]
+  const containerRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  })
+
+  // Parallax offsets for a "different" feel
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -200])
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -500])
+  const rotate = useTransform(scrollYProgress, [0, 1], [0, 15])
+
+  const [intro, philosophy, culture, integration] = aboutContent.paragraphs
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-[#f8f5f0]">
-      {/* Hero Section with Soft Gradient */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-transparent to-secondary/5 pt-20 pb-16 md:pt-28 md:pb-20">
-        {/* Decorative background elements */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-primary/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-10 w-96 h-96 bg-secondary/10 rounded-full blur-3xl" />
-        </div>
+    <main ref={containerRef} className="bg-[#FAF9F6] relative overflow-hidden">
+      
+      {/* 1. BACKGROUND FLOATING TEXT (Animated) */}
+      <motion.div 
+        style={{ y: y1 }}
+        className="absolute top-40 left-0 text-[25vw] font-serif text-[#1A2A22]/5 select-none pointer-events-none whitespace-nowrap"
+      >
+        Dynamic Total Wellness
+      </motion.div>
 
-        <div className="container relative mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-5xl md:text-7xl font-serif font-bold text-foreground mb-6 text-balance leading-tight">
-              About <span className="text-primary">Serene Path</span>
-            </h1>
-            <p className="text-xl md:text-2xl text-foreground/70 leading-relaxed max-w-2xl mx-auto italic">
-              "{aboutContent.subtitle}"
-            </p>
+      {/* 2. HERO SECTION: The Overlap */}
+      <section className="relative min-h-screen flex items-center pt-20">
+        <div className="container mx-auto px-6 max-w-7xl">
+          <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            {/* The Text Layer */}
+            <div className="lg:col-span-7 z-20">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1 }}
+              >
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="w-12 h-[1px] bg-primary" />
+                  <span className="text-primary font-bold tracking-[0.5em] uppercase text-[10px]">Philosophy</span>
+                </div>
+                <h1 className="text-6xl md:text-8xl font-serif text-[#1A2A22] leading-[0.9] mb-12">
+                  Healing <br /> is a <span className="italic">Process.</span>
+                </h1>
+                <p className="text-2xl text-[#1A2A22]/80 leading-relaxed font-light max-w-xl">
+                  {intro}
+                </p>
+              </motion.div>
+            </div>
+
+            {/* The Image Layer (Average size, parallax movement) */}
+            <motion.div 
+              style={{ y: y2, rotate }}
+              className="lg:col-span-5 relative z-10"
+            >
+              <div className="relative aspect-[3/4] w-full rounded-[4rem] overflow-hidden shadow-[0_50px_100px_rgba(26,42,34,0.2)]">
+                <Image src={aboutContent.portalUrl} fill alt="Darlene Nicks" className="object-cover" />
+              </div>
+              {/* Floating Element */}
+              <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-white rounded-full flex items-center justify-center shadow-xl border border-gray-50">
+                 <Flower className="text-primary w-12 h-12 animate-pulse" />
+              </div>
+            </motion.div>
           </div>
         </div>
-      </div>
+      </section>
 
-      {/* Main Content with Image and Philosophy */}
-      <section className="py-16 md:py-24">
-        <div className="container mx-auto px-4">
-          {/* Changed to flex-col on mobile → image first, then paragraphs */}
-          <div className="flex flex-col lg:grid lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
-            {/* Image + Signature FIRST in DOM → shows first on mobile */}
-            <div className="lg:col-span-1">
-              <div className="sticky top-24 space-y-8 lg:sticky lg:top-24">
-                <div className="group relative">
-                  {/* Decorative frame */}
-                  <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-3xl blur opacity-75 group-hover:opacity-100 transition duration-300" />
-                  <div className="relative rounded-2xl overflow-hidden border-4 border-white shadow-2xl">
-                    <Image
-                      src={aboutContent.portalUrl}
-                      alt="Darlene Nicks"
-                      width={600}
-                      height={600}
-                      className="w-full h-auto object-cover"
-                      priority
-                    />
-                  </div>
+      {/* 3. THE "STATIONS" (Animated Content Blocks) */}
+      <section className="py-40 relative z-20">
+        <div className="container mx-auto px-6 max-w-5xl">
+          
+          {[
+            { title: "The Philosophy", text: philosophy, icon: Waves, color: "bg-white" },
+            { title: "The Culture", text: culture, icon: ShieldCheck, color: "bg-[#1A2A22] text-white" },
+            { title: "The Integration", text: integration, icon: Flower, color: "bg-white" }
+          ].map((item, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 100 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              className={`p-12 md:p-20 rounded-[4rem] ${item.color} shadow-2xl mb-24 last:mb-0 relative group`}
+            >
+              <div className="flex flex-col md:flex-row gap-12 items-start">
+                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center shrink-0 ${idx === 1 ? 'bg-primary/20' : 'bg-primary/5 text-primary'}`}>
+                  <item.icon className="w-8 h-8" />
                 </div>
-
-                {/* Signature Card */}
-                <div className="bg-white rounded-2xl p-6 text-center shadow-xl border border-primary/10">
-                  <h2 className="text-2xl md:text-3xl font-serif font-semibold text-foreground">
-                    {aboutContent.signature.name}
-                  </h2>
-                  <p className="text-lg text-primary/70 mt-2 flex items-center justify-center gap-2">
-                    <Heart className="w-5 h-5" />
-                    {aboutContent.signature.tagline}
+                <div>
+                  <h3 className={`text-xs font-bold tracking-[0.3em] uppercase mb-6 ${idx === 1 ? 'text-primary' : 'text-gray-400'}`}>
+                    Chapter 0{idx + 1}
+                  </h3>
+                  <h2 className="text-3xl md:text-5xl font-serif mb-8">{item.title}</h2>
+                  <p className={`text-lg leading-relaxed ${idx === 1 ? 'text-gray-300' : 'text-gray-600'}`}>
+                    {item.text}
                   </p>
                 </div>
               </div>
-            </div>
-
-            {/* Paragraphs come AFTER image on mobile */}
-            <div className="lg:col-span-2 space-y-8">
-              {aboutContent.paragraphs.map((paragraph, index) => (
-                <div
-                  key={index}
-                  className="bg-white/80 backdrop-blur-sm rounded-3xl p-6 md:p-8 shadow-lg border border-white/20 hover:shadow-xl transition-shadow duration-300"
-                >
-                  <p className="text-base md:text-lg text-foreground/80 leading-relaxed">
-                    {paragraph}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
+              {/* Subtle hover reveal */}
+              <div className="absolute top-10 right-10 opacity-0 group-hover:opacity-100 transition-opacity">
+                <ArrowUpRight className="w-8 h-8" />
+              </div>
+            </motion.div>
+          ))}
         </div>
       </section>
 
-      {/* Key Principles Section */}
-      <section className="py-16 bg-gradient-to-r from-primary/5 to-secondary/5">
-        <div className="container mx-auto px-4">
-          <div className="max-w-7xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold text-center text-foreground mb-12">
-              Our Core Philosophy
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {principles.map((item, index) => {
-                const Icon = item.icon
-                return (
-                  <div
-                    key={index}
-                    className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-primary/10"
-                  >
-                    <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mb-4 text-primary">
-                      <Icon className="w-6 h-6" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-foreground mb-2">
-                      {item.title}
-                    </h3>
-                    <p className="text-foreground/70 text-sm leading-relaxed">
-                      {item.desc}
-                    </p>
-                  </div>
-                )
-              })}
+      {/* 4. THE SIGNATURE CLOSE */}
+      <section className="py-32 bg-white">
+        <div className="container mx-auto px-6 text-center">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            className="space-y-6"
+          >
+            <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-10">
+               <Image src={aboutContent.portalUrl} width={80} height={80} className="rounded-full grayscale" alt="Sign" />
             </div>
-          </div>
+            <h4 className="text-4xl font-serif text-[#1A2A22]">{aboutContent.signature.name}</h4>
+            <p className="text-primary font-bold tracking-[0.4em] uppercase text-xs">{aboutContent.signature.tagline}</p>
+            
+            <div className="pt-10">
+              <button className="relative px-12 py-5 bg-[#1A2A22] text-white rounded-full overflow-hidden group shadow-2xl">
+                <span className="relative z-10 font-bold tracking-widest text-xs">BEGIN YOUR JOURNEY</span>
+                <div className="absolute inset-0 bg-primary translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
+              </button>
+            </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Decorative Floral Footer */}
-      <div className="py-16 text-center">
-        <div className="inline-flex items-center gap-3 text-3xl text-primary/40">
-          <span>🪻</span>
-          <span>🌿</span>
-          <span>🪴</span>
-          <span>🌿</span>
-          <span>🪻</span>
-        </div>
-        <p className="text-foreground/40 text-sm mt-4 italic">
-          — Nurturing growth, one step at a time —
-        </p>
-      </div>
-
-
-
-
-           {/* FAQ */}
-      <section className="py-20 md:py-28 bg-card border-y border-border">
-        <div className="container mx-auto px-4">
-          <FAQSection />
-        </div>
-      </section>
-    </div>
+    </main>
   )
 }
