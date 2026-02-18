@@ -25,14 +25,15 @@ export default function Header() {
           <nav className="flex items-center justify-between py-1">
             
             {/* LOGO */}
-            <Link href="/" className="flex items-center">
-              <div className="relative h-20 md:h-28 w-auto">
+            <Link href="/" className=" relative flex items-center">
+              <div className="relative h-20 md:h-28 w-20 md:w-28 ">
                 <img
-                  src="/removedBG (1).png"
+                  // src="/removedBG (1).png"
+                  src="/LargeDynamic.png"
                   alt="Dynamics Total Wellness"
                   /* Added a slight dark contrast filter if your logo is very light, 
                      otherwise object-contain is perfect for white backgrounds */
-                  className="h-full w-auto object-contain lg:object-cover"
+                  className="h-full w-full object-contain lg:object-cover absolute "
                 />
               </div>
             </Link>
@@ -43,7 +44,7 @@ export default function Header() {
                 <Link
                   key={link.name}
                   href={link.href}
-                  className="text-[15px] font-extrabold text-[#1A2A22]  tracking-loose hover:text-[#026228] transition-colors relative group"
+                  className="text-[15px] font-extrabold text-[#1A2A22]  tracking-loose hover:text-[#026228] active:text-[#026228] transition-colors relative group"
                 >
                   {link.name}
                   <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-[#026228] transition-all group-hover:w-full" />
@@ -53,9 +54,10 @@ export default function Header() {
 
             {/* ACTION BUTTON */}
             <div className="flex items-center gap-4">
-              <Link href="https://darlene-nicks.clientsecure.me/sign-in" target="_blank" className="hidden sm:block">
+              <Link href="https://darlene-nicks.clientsecure.me/request/service" target="_blank" className="hidden sm:block">
                 <Button className="rounded-full bg-[#026228] hover:bg-[#1A2A22] text-white font-bold px-8 h-12 transition-all shadow-md">
-                  Patient Portal
+                  Book an Appointment
+
                 </Button>
               </Link>
               
@@ -82,7 +84,7 @@ export default function Header() {
             className="fixed inset-0 z-[100] bg-white p-10 lg:hidden flex flex-col"
           >
             <div className="flex justify-between items-center mb-12">
-              <img src="/removedBG.png" alt="Logo" className="h-16 w-auto object-contain" />
+              <img src="/LargeDynamic.png" alt="Logo" className="h-16 w-auto object-contain" />
               <button 
                 onClick={() => setIsOpen(false)}
                 className="p-2 text-[#1A2A22] hover:bg-gray-100 rounded-full"
@@ -106,9 +108,9 @@ export default function Header() {
             </nav>
 
             <div className="mt-auto pb-10">
-              <Link href="https://darlene-nicks.clientsecure.me/sign-in" target="_blank">
+              <Link href="https://darlene-nicks.clientsecure.me/request/service" target="_blank">
                 <Button className="w-full rounded-2xl bg-[#026228] h-16 text-lg font-bold shadow-xl">
-                  Patient Portal
+                  Book an Appointment
                 </Button>
               </Link>
             </div>
