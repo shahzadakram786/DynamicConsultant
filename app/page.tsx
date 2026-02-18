@@ -42,7 +42,7 @@ export default function Home() {
   <div className="container mx-auto px-4">
     <div className="max-w-xl mb-16">
       <h2 className="text-5xl font-serif font-bold text-[#3E5C4A] mb-4">Our Services</h2>
-      <p className="text-lg opacity-70 text-balance">
+      <p className="text-lg opacity-70 text-nowrap">
         Comprehensive mental health support tailored to your unique needs.
       </p>
     </div>

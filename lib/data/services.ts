@@ -58,8 +58,8 @@ export const services = [
       'Flexible scheduling options',
       'Progress monitoring and adjustments',
     ],
-    image: 'https://dy7glz37jgl0b.cloudfront.net/advice/images/regain/3c1c369ccf74570aa98a052972eb4741-therapist-takes-notes-while-sitting-with-a-female-client-who-looks-upset_l.jpg',
-    imageAlt: 'Empathetic therapist in a cozy session',
+image: 'https://images.pexels.com/photos/3958461/pexels-photo-3958461.jpeg',  // or whichever you like best
+imageAlt: 'Empathetic therapist in a cozy session',
   },
   {
     id: 'couples',
