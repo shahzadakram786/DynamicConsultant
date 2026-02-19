@@ -23,7 +23,8 @@ export const metadata: Metadata = {
   generator: "v0.app",
   keywords: ["counseling", "therapy", "mental health", "wellness", "therapist"],
 alternates: {
-    canonical: "dynamicstotalwellness.com"}
+    canonical: "dynamicstotalwellness.com"},
+
 };
 
 export const viewport: Viewport = {
@@ -44,6 +45,8 @@ export default function RootLayout({
     >
       <head>
  <meta name="google-site-verification" content="dIYeBRdWpg9YK5QBiZ34-dhrfv7QGtmyPdlb_pZiJqU" />
+ <link rel="icon" href="/favicon.ico" sizes="any" />
+ 
       </head>
       <body className="font-sans antialiased bg-background text-foreground"
       data-density="default" data-font-size="base"  suppressHydrationWarning>

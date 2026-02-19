@@ -77,7 +77,7 @@ export default function Hero() {
               {/* Organic Blob Mask for the Image */}
               <div className="absolute inset-0 bg-[#1A2A22] rounded-[40% 60% 70% 30% / 40% 50% 60% 50%] animate-blob overflow-hidden">
                 <img 
-                  src="/hero1(1).jpg" 
+                  src="/hero1(2).jpg" 
                   alt="Therapy session" 
                   className="w-full h-full object-cover scale-110 grayscale-[0.2]"
                 />
