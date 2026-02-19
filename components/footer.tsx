@@ -1,131 +1,103 @@
+'use client'
+
 import Link from 'next/link'
-import { Mail, Phone, MapPin, Linkedin, Facebook, Twitter } from 'lucide-react'
+import { Mail, Phone, MapPin, Linkedin, Facebook, Twitter, ArrowUpRight } from 'lucide-react'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
 
   return (
-    <footer className="bg-foreground text-primary-foreground">
-      <div className="container mx-auto px-4 py-16 md:py-20">
-        {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          {/* Company Info */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-serif font-bold">Dynamics Total Wellness</h3>
-            <p className="text-primary-foreground/80">
-              Professional mental health counseling services dedicated to supporting your wellness journey.
+    <footer className="bg-foreground text-primary-foreground relative overflow-hidden">
+      {/* Background Decorative Element - Adjusted opacity and size for mobile */}
+      <div className="absolute -bottom-10 -right-10 md:-bottom-20 md:-right-20 text-[15rem] md:text-[25rem] font-serif opacity-[0.03] pointer-events-none select-none">
+        D
+      </div>
+
+      {/* Changed py-10 to px-6 (mobile) and responsive padding py-16/24 */}
+      <div className="container mx-auto px-6 py-16 md:py-24 relative z-10">
+        <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-16">
+          
+          {/* LEFT SIDE: Brand Narrative */}
+          <div className="w-full lg:w-1/3 stack stack-lg">
+            <div className="stack stack-sm">
+              <h2 className="font-serif italic text-4xl md:text-5xl text-white">
+                Dynamics
+              </h2>
+              <p className="text-accent uppercase tracking-[0.3em] font-bold text-[10px]">
+                Total Wellness Center
+              </p>
+            </div>
+            <p className="text-primary-foreground/70 text-base md:text-lg leading-relaxed max-w-md">
+              We believe in the power of authentic growth. Our space is designed for those ready to define their boundaries and reclaim their values.
             </p>
-            <div className="flex gap-4">
-              <a href="#" className="hover:text-accent transition-colors"
-              aria-label="Visit Darlene Nicks on Facebook">
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a href="#" className="hover:text-accent transition-colors"
-              aria-label="Visit Darlene Nicks on Twitter">
-                <Twitter className="w-5 h-5" />
-              </a>
-              <a href="https://www.linkedin.com/in/darlene-nicks-468620113/" 
-                  className="hover:text-accent transition-colors"
-                  target="_blank"
-                  aria-label="Visit Darlene Nicks on LinkedIn">
-                <Linkedin className="w-5 h-5" />
-              </a>
+            <div className="flex gap-6">
+               <Link href="/contact" className="group flex items-center gap-2 text-white font-medium hover:text-accent transition-colors">
+                 Start your journey <ArrowUpRight className="w-4 h-4 group-hover:rotate-45 transition-transform" />
+               </Link>
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h4 className="font-semibold text-lg">Quick Links</h4>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/" className="hover:text-accent transition-colors">
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="hover:text-accent transition-colors">
-                  Services
-                </Link>
-              </li>
-              <li>
-                <Link href="/about" className="hover:text-accent transition-colors">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link href="/contact" className="hover:text-accent transition-colors">
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
+          {/* RIGHT SIDE: The "Glass" Info Hub */}
+          <div className="w-full lg:w-1/2 grid grid-cols-1 sm:grid-cols-2 gap-10 md:gap-8">
+            
+            {/* Navigation Column */}
+            <div className="stack stack-md">
+              <h4 className="text-white font-bold border-b border-white/10 pb-4">Explore</h4>
+              <nav className="stack stack-sm">
+                {['Home', 'Services', 'About', 'Contact'].map((item) => (
+                  <Link 
+                    key={item} 
+                    href={`/${item === 'Home' ? '' : item.toLowerCase()}`}
+                    className="text-primary-foreground/60 hover:text-accent transition-all hover:pl-2 py-1 inline-block"
+                  >
+                    {item}
+                  </Link>
+                ))}
+              </nav>
+            </div>
 
-          {/* Services */}
-          <div className="space-y-4">
-            <h4 className="font-semibold text-lg">Services</h4>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="hover:text-accent transition-colors">
-                  Individual Therapy
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-accent transition-colors">
-                  Couples Counseling
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-accent transition-colors">
-                  Adolescent Support
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:text-accent transition-colors">
-                  Workshops
-                </a>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div className="space-y-4">
-            <h4 className="font-semibold text-lg">Contact</h4>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3">
-                <Phone className="w-5 h-5 mt-1 flex-shrink-0" />
-                <a href="tel:+1234567890" className="hover:text-accent transition-colors">
+            {/* Contact Card - Floating Design */}
+            <div className="bg-white/5 backdrop-blur-lg border border-white/10 p-6 md:p-8 rounded-3xl stack stack-md shadow-2xl">
+              <h4 className="text-accent font-bold uppercase tracking-widest text-xs">Reach Out</h4>
+              
+              <div className="stack stack-sm">
+                <a href="tel:+16095070123" className="text-lg md:text-xl font-medium text-white hover:text-accent transition-colors break-words">
                   609.507.0123
-
                 </a>
-              </li>
-              <li className="flex items-start gap-3">
-                <Mail className="w-5 h-5 mt-1 flex-shrink-0" />
-                <a href="mailto:info@dynamics.com" className="hover:text-accent transition-colors">
+                <a href="mailto:info@dynamics.com" className="text-sm md:text-base text-primary-foreground/80 hover:text-white transition-colors break-all">
                   info@dynamics.com
                 </a>
-              </li>
-              <li className="flex items-start gap-3">
-                <MapPin className="w-5 h-5 mt-1 flex-shrink-0" />
-                <span className="text-primary-foreground/80">
-                 Nutley, NJ 07110-4707
-                </span>
-              </li>
-            </ul>
+              </div>
+
+              <div className="pt-2 md:pt-4 stack stack-xs">
+                <p className="text-primary-foreground/50 text-[10px] uppercase font-bold tracking-tighter">Our Office</p>
+                <p className="text-primary-foreground/90 text-sm md:text-base leading-snug">Nutley, NJ 07110-4707</p>
+              </div>
+
+              <div className="flex gap-4 pt-2 md:pt-4">
+                {[
+                  { Icon: Facebook, href: "#" },
+                  { Icon: Twitter, href: "#" },
+                  { Icon: Linkedin, href: "https://www.linkedin.com/in/darlene-nicks-468620113/" }
+                ].map((social, i) => (
+                  <a key={i} href={social.href} className="p-3 rounded-full bg-white/5 hover:bg-accent hover:text-accent-foreground transition-all">
+                    <social.Icon className="w-4 h-4" />
+                  </a>
+                ))}
+              </div>
+            </div>
+
           </div>
         </div>
 
-        {/* Divider */}
-        <div className="border-t border-primary-foreground/20 pt-12 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-primary-foreground/60 text-sm">
-            &copy; {currentYear} Dynamics Total Wellness. All rights reserved.
+        {/* BOTTOM STRIP */}
+        <div className="mt-16 md:mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
+          <p className="text-primary-foreground/30 text-[10px] md:text-xs uppercase tracking-widest text-center md:text-left">
+            &copy; {currentYear} Dynamics Total Wellness &bull; Made with Intention
           </p>
-          <div className="flex gap-6 text-sm">
-            <a href="#" className="text-primary-foreground/60 hover:text-primary-foreground transition-colors">
-              Privacy Policy
-            </a>
-            <a href="#" className="text-primary-foreground/60 hover:text-primary-foreground transition-colors">
-              Terms of Service
-            </a>
+          <div className="flex gap-6 md:gap-8 text-[10px] uppercase tracking-widest font-bold text-primary-foreground/40">
+            <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
+            <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
           </div>
         </div>
       </div>

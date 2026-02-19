@@ -2,18 +2,11 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
 
 @layer base {
   :root {
+    /* Color tokens */
     --background: 0 0% 98.5%;
     --foreground: 120 15% 20%;
     --card: 0 0% 100%;
@@ -38,6 +31,42 @@ body {
     --chart-3: 100 15% 50%;
     --chart-4: 130 25% 55%;
     --chart-5: 110 18% 65%;
+
+
+
+
+
+    /* Typography and spacing primitives */
+    --font-scale: 1;
+    --space-scale: 1;
+    --radius: 0.75rem;
+    --text-body: clamp(0.95rem, 0.9rem + 0.18vw, 1.05rem);
+    --text-small: clamp(0.85rem, 0.82rem + 0.12vw, 0.95rem);
+    --text-h1: clamp(2rem, 1.5rem + 2.4vw, 4rem);
+    --text-h2: clamp(1.75rem, 1.35rem + 1.8vw, 3rem);
+    --text-h3: clamp(1.4rem, 1.2rem + 1.2vw, 2.2rem);
+    --text-h4: clamp(1.2rem, 1.08rem + 0.8vw, 1.7rem);
+    --text-h5: clamp(1.05rem, 1rem + 0.5vw, 1.35rem);
+    --text-h6: clamp(1rem, 0.95rem + 0.35vw, 1.15rem);
+    --line-height-body: 1.65;
+    --line-height-heading: 1.2;
+    --tracking-heading: -0.015em;
+
+    --space-1: calc(0.25rem * var(--space-scale));
+    --space-2: calc(0.5rem * var(--space-scale));
+    --space-3: calc(0.75rem * var(--space-scale));
+    --space-4: calc(1rem * var(--space-scale));
+    --space-5: calc(1.25rem * var(--space-scale));
+    --space-6: calc(1.5rem * var(--space-scale));
+    --space-8: calc(2rem * var(--space-scale));
+    --space-10: calc(2.5rem * var(--space-scale));
+    --space-12: calc(3rem * var(--space-scale));
+    --space-16: calc(4rem * var(--space-scale));
+
+    --section-space-y: clamp(var(--space-10), 8vw, var(--space-16));
+    --section-space-x: clamp(var(--space-4), 3.5vw, var(--space-12));
+
+
     --radius: 0.75rem;
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 120 15% 20%;
@@ -48,9 +77,11 @@ body {
     --sidebar-border: 120 15% 88%;
     --sidebar-ring: 120 30% 35%;
   }
+
+
   .green,
   .dark {
-      --background: 132 45% 95%;
+    --background: 132 45% 95%;
     --foreground: 138 36% 17%;
     --card: 0 0% 100%;
     --card-foreground: 138 36% 17%;
@@ -66,7 +97,7 @@ body {
     --accent-foreground: 0 0% 100%;
     --destructive: 0 72% 48%;
     --destructive-foreground: 0 0% 98%;
-        --border: 132 28% 78%;
+    --border: 132 28% 78%;
     --input: 132 24% 90%;
     --ring: 145 45% 34%;
     --chart-1: 145 45% 34%;
@@ -78,22 +109,44 @@ body {
     --sidebar-foreground: 138 36% 17%;
     --sidebar-primary: 145 45% 34%;
     --sidebar-primary-foreground: 0 0% 100%;
-      --sidebar-accent: 132 40% 88%;
+    --sidebar-accent: 132 40% 88%;
     --sidebar-accent-foreground: 138 36% 17%;
     --sidebar-border: 132 28% 78%;
     --sidebar-ring: 145 45% 34%;
   }
 }
 
+
 @layer base {
+  [data-density='compact'] {
+    --space-scale: 0.9;
+  }
+
+  [data-density='comfortable'] {
+    --space-scale: 1.12;
+  }
+
+  [data-font-size='sm'] {
+    --font-scale: 0.94;
+  }
+
+  [data-font-size='lg'] {
+    --font-scale: 1.08;
+  }
+
   * {
     @apply border-border;
   }
+
   html {
     scroll-behavior: smooth;
+    font-size: calc(100% * var(--font-scale));
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-size: var(--text-body);
+    line-height: var(--line-height-body);
   }
 
   .green body,
@@ -101,13 +154,82 @@ body {
     background-image: linear-gradient(145deg, hsl(132 55% 96%), hsl(146 45% 90%));
     background-attachment: fixed;
   }
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-serif;
+
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-serif text-foreground;
+    letter-spacing: var(--tracking-heading);
+    line-height: var(--line-height-heading);
+    text-wrap: balance;
+    margin-block: 0;
+  }
+
+  h1 { font-size: var(--text-h1); }
+  h2 { font-size: var(--text-h2); }
+  h3 { font-size: var(--text-h3); }
+  h4 { font-size: var(--text-h4); }
+  h5 { font-size: var(--text-h5); }
+  h6 { font-size: var(--text-h6); }
+
+  p,
+  li,
+  small,
+  label,
+  input,
+  textarea,
+  button {
+    line-height: var(--line-height-body);
+  }
+
+  p,
+  li,
+  small {
+    color: hsl(var(--foreground) / 0.92);
+  }
+
+  :where(main section) {
+    padding-inline: var(--section-space-x);
+  }
+
+  :where(main section + section) {
+    margin-top: var(--space-6);
   }
 }
 
 @layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
   .text-pretty {
     text-wrap: pretty;
+  }
+
+  .section-padding {
+    padding-block: var(--section-space-y);
+    padding-inline: var(--section-space-x);
+  }
+
+  .stack {
+    display: grid;
+    gap: var(--stack-space, var(--space-4));
+  }
+
+  .stack-xs { --stack-space: var(--space-2); }
+  .stack-sm { --stack-space: var(--space-3); }
+  .stack-md { --stack-space: var(--space-5); }
+  .stack-lg { --stack-space: var(--space-8); }
+
+  .surface-card {
+    border-radius: var(--radius);
+    border: 1px solid hsl(var(--border));
+    background-color: hsl(var(--card));
+    color: hsl(var(--card-foreground));
+    padding: var(--space-6);
   }
 }
