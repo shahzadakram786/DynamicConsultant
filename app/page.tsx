@@ -40,7 +40,7 @@ export default function Home() {
                 className="font-serif font-bold text-foreground leading-tight"
                 style={{ fontSize: 'var(--text-h2)' }}
               >
-                Our Specialized Services
+                Our Specialized Services  
               </h2>
               <p 
                 className="text-muted-foreground max-w-lg"
