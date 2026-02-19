@@ -43,7 +43,7 @@ export default function RootLayout({
       className={`${inter.variable} ${merriweather.variable}`}
     >
       <head>
-
+ <meta name="google-site-verification" content="dIYeBRdWpg9YK5QBiZ34-dhrfv7QGtmyPdlb_pZiJqU" />
       </head>
       <body className="font-sans antialiased bg-background text-foreground"
       data-density="default" data-font-size="base"  suppressHydrationWarning>
