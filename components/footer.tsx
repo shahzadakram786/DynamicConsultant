@@ -76,11 +76,11 @@ export default function Footer() {
 
               <div className="flex gap-4 pt-2 md:pt-4">
                 {[
-                  { Icon: Facebook, href: "#" },
-                  { Icon: Twitter, href: "#" },
-                  { Icon: Linkedin, href: "https://www.linkedin.com/in/darlene-nicks-468620113/" }
+                  { Icon: Facebook, href: "#", ariaLabel: "Visit our Facebook profile" },
+                  { Icon: Twitter, href: "#", ariaLabel: "Visit our Twitter profile" },
+                  { Icon: Linkedin, href: "https://www.linkedin.com/in/darlene-nicks-468620113/", ariaLabel: "Visit our LinkedIn profile" } 
                 ].map((social, i) => (
-                  <a key={i} href={social.href} className="p-3 rounded-full bg-white/5 hover:bg-accent hover:text-accent-foreground transition-all">
+                  <a key={i} href={social.href} aria-label={social.ariaLabel} className="p-3 rounded-full bg-white/5 hover:bg-accent hover:text-accent-foreground transition-all">
                     <social.Icon className="w-4 h-4" />
                   </a>
                 ))}
@@ -92,10 +92,10 @@ export default function Footer() {
 
         {/* BOTTOM STRIP */}
         <div className="mt-16 md:mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-primary-foreground/30 text-[10px] md:text-xs uppercase tracking-widest text-center md:text-left">
+          <p className="text-primary-foreground/70 text-[10px] md:text-xs uppercase tracking-widest text-center md:text-left">
             &copy; {currentYear} Dynamics Total Wellness &bull; Made with Intention
           </p>
-          <div className="flex gap-6 md:gap-8 text-[10px] uppercase tracking-widest font-bold text-primary-foreground/40">
+          <div className="flex gap-6 md:gap-8 text-[10px] uppercase tracking-widest font-bold text-primary-foreground/70">
             <Link href="/privacy" className="hover:text-white transition-colors">Privacy</Link>
             <Link href="/terms" className="hover:text-white transition-colors">Terms</Link>
           </div>
