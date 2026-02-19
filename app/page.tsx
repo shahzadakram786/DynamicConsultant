@@ -1,99 +1,118 @@
 'use client'
 
-import Link from 'next/link'
+import React from 'react'
 import { motion } from 'framer-motion'
-import { Button } from '@/components/ui/button'
-import { ArrowRight, CheckCircle, CheckCircle2, Phone, Shield, Sparkles } from 'lucide-react'
-import Testimonials from '@/components/section/Testimonials'
 import { services } from '@/lib/data/services'
 import ServiceCard from '@/components/section/ServiceCard'
 import Hero from '@/components/section/HeroSection'
 import InsuranceMarquee from '@/components/section/InsuranceMarquee'
 import Cta from '@/components/section/Cta'
 import HomeAbout from '@/components/section/HomeAbout'
-
-// Animation Variants
-const fadeInUp = {
-  initial: { opacity: 0, y: 30 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true },
-  transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] } // replace string ease with cubic-bezier array
-}
-
-const staggerContainer = {
-  initial: { opacity: 0 },
-  whileInView: { 
-    opacity: 1,
-    transition: { staggerChildren: 0.2 }
-  },
-  viewport: { once: true }
-}
+import Testimonials from '@/components/section/Testimonials'
 
 export default function Home() {
   const homepageServices = services.slice(0, 4)
 
   return (
-    <div className="min-h-screen bg-[#FDFCF9] text-[#1A2A22]">
+    /* Updated background to use variable and removed hardcoded text color */
+    <div className="min-h-screen bg-background text-foreground selection:bg-primary/20">
       
       {/* Hero Section */}
       <Hero />
 
+      {/* About Section */}
+      <HomeAbout />
 
-      <HomeAbout/>
+      {/* Services Section - Redesigned with your scale tokens */}
+      <section className="section-padding bg-background transition-colors duration-500">
+        <div className="container mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-[var(--space-16)] gap-[var(--space-6)]">
+            <div className="max-w-2xl stack stack-sm">
+              <motion.span 
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                className="text-primary font-bold tracking-widest uppercase"
+                style={{ fontSize: 'var(--text-small)' }}
+              >
+                What we offer
+              </motion.span>
+              <h2 
+                className="font-serif font-bold text-foreground leading-tight"
+                style={{ fontSize: 'var(--text-h2)' }}
+              >
+                Our Specialized Services
+              </h2>
+              <p 
+                className="text-muted-foreground max-w-lg"
+                style={{ fontSize: 'var(--text-body)' }}
+              >
+                Comprehensive mental health support tailored to your unique needs, 
+                blending clinical expertise with compassionate care.
+              </p>
+            </div>
+            
+            <motion.div whileHover={{ x: 5 }} className="hidden md:block">
+              <a href="/services" className="text-primary font-bold flex items-center gap-2 border-b-2 border-primary/20 hover:border-primary transition-all pb-1">
+                View All Services
+              </a>
+            </motion.div>
+          </div>
 
-      {/* // ... inside the Home component */}
-<section className="py-24 bg-[#FDFCF9]">
-  <div className="container mx-auto px-4">
-    <div className="max-w-xl mb-16">
-      <h2 className="text-5xl font-serif font-bold text-[#3E5C4A] mb-4">Our Services</h2>
-      <p className="text-lg opacity-70 text-nowrap">
-        Comprehensive mental health support tailored to your unique needs.
-      </p>
-    </div>
-
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-      {homepageServices.map((service, index) => (
-        <ServiceCard
-          key={index}
-          index={index}
-          title={service.title}
-          shortDesc={service.shortDesc}
-          image={service.image ?? '/placeholder.jpg'} // fallback to avoid string | undefined} // Make sure this is in your data!
-          Icon={service.icon}
-        />
-      ))}
-    </div>
-  </div>
-</section>
-
-      {/* Testimonials */}
-     
-        <Testimonials />
-
-
-        {/* Your Hero Section */}
-      <InsuranceMarquee />
-      {/* Rest of your sections */}
-      
-
-      {/* Quote Section with Parallax Feel */}
-      <section className="py-32 bg-green-700 text-white relative overflow-hidden">
-        <motion.div 
-           initial={{ opacity: 0, scale: 0.8 }}
-           whileInView={{ opacity: 1, scale: 1 }}
-           viewport={{ once: true }}
-           transition={{ duration: 1 }}
-           className="container mx-auto px-4 text-center relative z-10"
-        >
-          <blockquote className="text-4xl md:text-7xl font-serif font-medium leading-tight max-w-5xl mx-auto italic">
-            "Teaching you to be your most authentic self with boundaries and values"
-          </blockquote>
-        </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[var(--space-8)]">
+            {homepageServices.map((service, index) => (
+              <ServiceCard
+                key={index}
+                index={index}
+                title={service.title}
+                shortDesc={service.shortDesc}
+                image={service.image ?? '/placeholder.jpg'}
+                Icon={service.icon}
+              />
+            ))}
+          </div>
+        </div>
       </section>
 
-     
+      {/* Testimonials */}
+      <Testimonials />
 
-     <Cta />
+      {/* Insurance Marquee */}
+      <InsuranceMarquee />
+
+      {/* Quote Section - Redesigned for a "Premium" feel using Primary/Foreground mix */}
+      <section className="relative overflow-hidden">
+        {/* Background treatment using your primary color tokens */}
+        <div className="absolute inset-0 bg-primary/95 mix-blend-multiply z-0" />
+        <div 
+          className="absolute inset-0 z-0 opacity-20"
+          style={{ 
+            backgroundImage: `radial-gradient(circle at 2px 2px, hsl(var(--primary-foreground)) 1px, transparent 0)`,
+            backgroundSize: '40px 40px' 
+          }}
+        />
+        
+        <div className="section-padding container mx-auto text-center relative z-10">
+          <motion.div 
+             initial={{ opacity: 0, y: 30 }}
+             whileInView={{ opacity: 1, y: 0 }}
+             viewport={{ once: true }}
+             transition={{ duration: 1 }}
+             className="stack stack-lg"
+          >
+            <div className="w-16 h-1px bg-primary-foreground/30 mx-auto" />
+            <blockquote 
+              className="font-serif font-medium leading-tight max-w-5xl mx-auto italic text-primary-foreground"
+              style={{ fontSize: 'var(--text-h2)' }}
+            >
+              "Teaching you to be your most authentic self with boundaries and values"
+            </blockquote>
+            <div className="w-16 h-1px bg-primary-foreground/30 mx-auto" />
+          </motion.div>
+        </div>
+      </section>
+
+      {/* CTA Section */}
+      <Cta />
     </div>
   )
 }

@@ -11,85 +11,102 @@ export default function HomeAboutVision() {
   const [story1, story2, vision1, vision2] = aboutContent.paragraphs
 
   return (
-    <section className="bg-white">
-      {/* 1. THE STORY SECTION (Clean & Aligned) */}
-      <div className="container mx-auto px-6 max-w-7xl py-24">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+    <section className="bg-background transition-colors duration-500">
+      {/* 1. THE STORY SECTION - Using your fluid section-padding and stack utilities */}
+      <div className="section-padding container mx-auto max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-[var(--space-12)] items-center">
           <div className="lg:col-span-5">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              className="relative aspect-[4/5] rounded-[2rem] overflow-hidden"
+              style={{ borderRadius: 'var(--radius)' }}
+              className="relative aspect-[4/5] overflow-hidden border border-border"
             >
-              <Image src={aboutContent.portalUrl} fill alt="About Darlene" className="object-cover" />
+              <Image 
+                src={aboutContent.portalUrl} 
+                fill 
+                alt="About Darlene" 
+                className="object-cover" 
+              />
             </motion.div>
           </div>
           
-          <div className="lg:col-span-7 flex flex-col justify-center">
-            <motion.span initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="text-primary font-bold tracking-widest text-xs uppercase mb-4 block">
+          <div className="lg:col-span-7 stack stack-md">
+            <motion.span 
+              initial={{ opacity: 0 }} 
+              whileInView={{ opacity: 1 }} 
+              className="font-bold tracking-widest text-[var(--text-small)] uppercase"
+            >
               Our Essence
             </motion.span>
-            <h2 className="text-4xl md:text-5xl font-serif text-[#1A2A22] mb-8 leading-tight">
+            
+            <h2 className="text-balance" style={{ fontSize: 'var(--text-h2)' }}>
               {aboutContent.subtitle}
             </h2>
-            <div className="space-y-6 text-gray-600 leading-relaxed max-w-xl">
-              <p className="text-lg font-medium text-[#1A2A22]/80">{story1}</p>
-              <p>{story2}</p>
+            
+            <div className="stack stack-sm max-w-xl">
+              <p className="lg:font-medium opacity-90 " style={{ fontSize: 'var(--text-h5)' }}>
+                {story1}
+              </p>
+              {/* <p className="text-muted-foreground">
+                {story2}
+              </p> */}
             </div>
           </div>
         </div>
       </div>
 
-      {/* 2. THE VISION BREAK (Immersive & Interactive) */}
-      <div className="relative py-32 bg-[#1A2A22] overflow-hidden">
-        {/* Subtle Background Pattern */}
-        <div className="absolute inset-0 opacity-10 flex items-center justify-center">
-            <div className="w-[800px] h-[800px] border border-white rounded-full scale-150" />
+      {/* 2. THE VISION BREAK - Utilizing Theme Tokens for Dark/Green variants */}
+      <div className="relative py-[var(--space-16)] bg-foreground overflow-hidden">
+        {/* Decorative SVG Pattern using Primary Color */}
+        <div className="absolute inset-0 opacity-10 flex items-center justify-center pointer-events-none">
+            <div className="w-[800px] h-[800px] border border-primary rounded-full scale-150" />
         </div>
 
-        <div className="container mx-auto px-6 max-w-5xl relative z-10 text-center">
+        <div className="container mx-auto px-[var(--section-space-x)] max-w-5xl relative z-10 text-center stack stack-lg">
           <motion.div 
              initial={{ opacity: 0, scale: 0.9 }}
              whileInView={{ opacity: 1, scale: 1 }}
-             className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/20 text-primary mb-10"
+             className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-primary/20 text-primary mx-auto"
           >
             <Eye className="w-8 h-8" />
           </motion.div>
           
-          <h2 className="text-3xl md:text-5xl font-serif text-white mb-16 italic">
+          <h2 className="italic text-primary-foreground text-balance" style={{ fontSize: 'var(--text-h2)' }}>
             "Our Vision for Total Dynamic Wellness"
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 text-left">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-[var(--space-8)] text-left">
+            {/* Vision Card 1 */}
             <motion.div 
               initial={{ opacity: 0, x: -30 }}
               whileInView={{ opacity: 1, x: 0 }}
-              className="p-8 bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10 hover:bg-white/10 transition-colors"
+              className="p-[var(--space-8)] bg-background/5 backdrop-blur-sm border border-primary-foreground/10 rounded-[var(--radius)] hover:bg-background/10 transition-colors"
             >
-              <Sparkles className="text-primary mb-4 w-6 h-6" />
-              <h4 className="text-white font-bold mb-4">Integrative Growth</h4>
-              <p className="text-gray-400 text-sm leading-relaxed">{vision1}</p>
+              <Sparkles className="text-primary mb-[var(--space-4)] w-6 h-6" />
+              <h4 className="text-primary-foreground font-bold mb-[var(--space-2)]">Integrative Growth</h4>
+              <p className="text-primary-foreground/70" style={{ fontSize: 'var(--text-small)' }}>{vision1}</p>
             </motion.div>
 
+            {/* Vision Card 2 */}
             <motion.div 
                initial={{ opacity: 0, x: 30 }}
                whileInView={{ opacity: 1, x: 0 }}
-               className="p-8 bg-white/5 backdrop-blur-sm rounded-3xl border border-white/10 hover:bg-white/10 transition-colors"
+               className="p-[var(--space-8)] bg-background/5 backdrop-blur-sm border border-primary-foreground/10 rounded-[var(--radius)] hover:bg-background/10 transition-colors"
             >
-              <Heart className="text-primary mb-4 w-6 h-6" />
-              <h4 className="text-white font-bold mb-4">Authentic Self</h4>
-              <p className="text-gray-400 text-sm leading-relaxed">{vision2}</p>
+              <Heart className="text-primary mb-[var(--space-4)] w-6 h-6" />
+              <h4 className="text-primary-foreground font-bold mb-[var(--space-2)]">Authentic Self</h4>
+              <p className="text-primary-foreground/70" style={{ fontSize: 'var(--text-small)' }}>{vision2}</p>
             </motion.div>
           </div>
 
           <motion.div 
              initial={{ opacity: 0, y: 20 }}
              whileInView={{ opacity: 1, y: 0 }}
-             className="mt-20"
           >
-            <Link href="/about" className="inline-flex items-center gap-4 text-white group">
-              <span className="text-sm font-bold tracking-widest uppercase">Explore our full philosophy</span>
-              <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center group-hover:scale-110 transition-transform">
+            <Link href="/about" className="inline-flex items-center gap-4 text-primary-foreground group">
+              <span className="text-[var(--text-small)] font-bold tracking-widest uppercase">Explore our full philosophy</span>
+              <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center group-hover:scale-110 transition-transform text-primary-foreground">
                 <ArrowRight className="w-5 h-5" />
               </div>
             </Link>
