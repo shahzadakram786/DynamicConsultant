@@ -28,7 +28,7 @@ export function AboutProfileCard({ portalUrl }: { portalUrl: string }) {
         <motion.div
           initial={{ opacity: 0, clipPath: 'inset(100% 0 0 0)' }}
           whileInView={{ opacity: 1, clipPath: 'inset(0% 0 0 0)' }}
-          viewport={{ once: true, amount: 0.2 }} // Triggers when 20% is visible
+          // viewport={{ once: true, amount: 0.2 }} // Triggers when 20% is visible
           transition={{ duration: 1.2, ease: [0.19, 1, 0.22, 1] }}
           className="relative w-full h-full grayscale-0  transition-all duration-1000 shadow-xl overflow-hidden"
           style={{ borderRadius: 'var(--radius)' }}

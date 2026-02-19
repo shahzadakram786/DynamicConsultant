@@ -9,11 +9,7 @@ import { AboutProfileCard } from "@/components/section/about/ProfileCard";
 import { AboutStation } from "@/components/section/about/StationCard";
 import { AboutSignature } from "@/components/section/about/SignatureSection";
 
-// Component Imports
-// import { AboutHero } from "./components/AboutHero";
-// import { AboutProfileCard } from "./components/AboutProfileCard";
-// import { AboutStation } from "./components/AboutStation";
-// import { AboutSignature } from "./components/about/AboutSignature";
+
 
 export default function AboutPage() {
   const containerRef = useRef(null);
