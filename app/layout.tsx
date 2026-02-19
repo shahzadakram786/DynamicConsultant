@@ -22,6 +22,8 @@ export const metadata: Metadata = {
     "Professional mental health counseling services focusing on individual therapy, couples counseling, and comprehensive wellness solutions.",
   generator: "v0.app",
   keywords: ["counseling", "therapy", "mental health", "wellness", "therapist"],
+alternates: {
+    canonical: "dynamicstotalwellness.com"}
 };
 
 export const viewport: Viewport = {
@@ -40,6 +42,9 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${inter.variable} ${merriweather.variable}`}
     >
+      <head>
+ <meta name="google-site-verification" content="dIYeBRdWpg9YK5QBiZ34-dhrfv7QGtmyPdlb_pZiJqU" />
+      </head>
       <body className="font-sans antialiased bg-background text-foreground"
       data-density="default" data-font-size="base"  suppressHydrationWarning>
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
