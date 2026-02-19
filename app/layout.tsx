@@ -23,7 +23,7 @@ export const metadata: Metadata = {
   generator: "v0.app",
   keywords: ["counseling", "therapy", "mental health", "wellness", "therapist"],
 alternates: {
-    canonical: "dynamicstotalwellness.com"},
+    canonical: "https://www.dynamicstotalwellness.com"},
 
 };
 
